@@ -1,0 +1,94 @@
+package de.vkay.updateapps.Datenspeicher;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
+
+public class SharedPrefs {
+
+    Context context;
+    android.content.SharedPreferences shared;
+    android.content.SharedPreferences.Editor editor;
+    PackageInfo pInfo;
+
+    public SharedPrefs(Context context){
+        this.context = context;
+        shared = PreferenceManager.getDefaultSharedPreferences(context);
+        editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        pInfo = null;
+    }
+
+    /**
+     * Methoden für Installation
+     */
+
+    public void setWelcome() {
+        editor.putBoolean("welcome", true);
+        editor.apply();
+    }
+
+    public boolean getWelcome() {
+        return shared.getBoolean("welcome", false);
+    }
+
+    public String getInstalledAppVersion(String paketname) {
+        try {
+            pInfo = context.getPackageManager().getPackageInfo(paketname, 0);
+            return pInfo.versionName;
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean isTestBuild(String paketname) {
+        if (getInstalledAppVersion(paketname) != null) {
+            if (getInstalledAppVersion(paketname).contains("test-build")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void saveApp(String paketname) {
+        editor.putBoolean(paketname, true);
+        editor.apply();
+    }
+
+    public void removeApp(String paketname) {
+        editor.remove(paketname);
+        editor.apply();
+    }
+
+    public boolean getAppStatus(String paketname) {
+        return shared.getBoolean(paketname, false);
+    }
+
+    public void setUsername(String s){
+        editor.putString("username", s);
+        editor.apply();
+    }
+
+    public String getUsername(){
+        return shared.getString("username", "-");
+    }
+
+    public void setLoggedInStatus(boolean b) {
+        editor.putBoolean("logged", b);
+        editor.apply();
+    }
+
+    public boolean getLoggedInStatus() {
+        return shared.getBoolean("logged", false);
+    }
+
+    public boolean getWifiDownloadStatus() {
+        return shared.getBoolean("wifi_download", true);
+    }
+
+    public boolean getAutoInstallStatus() {
+        return shared.getBoolean("autostart_install", true);
+    }
+}

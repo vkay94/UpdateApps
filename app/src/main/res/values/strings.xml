@@ -1,0 +1,33 @@
+<resources>
+
+    <string name="app_name">UpdateApps</string>
+    <string name="app_package">de.vkay.updateapps</string>
+
+    <string name="title_activity_alle_apps">AlleApps</string>
+    <string name="title_activity_feedback">Beitrag verfasen</string>
+    <string name="title_activity_cpanel">Einstellungen</string>
+    <string name="title_activity_user_feedback">Eigene Beiträge</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Navigation Drawer Items -->
+    <string name="nav_allapps">Alle Apps</string>
+    <string name="nav_menu_general">Allgemein</string>
+    <string name="nav_settings">Login</string>
+    <string name="nav_web">Webseite</string>
+
+    <!-- WelcomeScreen -->
+    <string name="screen1_title">Willkommen!</string>
+    <string name="screen1_desc">Finde heraus, was es alles Neues gibt.</string>
+    <string name="screen2_title">Bleibe aktuell!</string>
+    <string name="screen2_desc">Lade dir neue Apps herunter.</string>
+    <string name="screen_setdetails_desc">Logge dich ein, um Feedback zu schreiben und um keine App zu verpassen.</string>
+
+    <string name="title_activity_user_login">Login</string>
+
+    <string name="experimental">Die folgenden Versionen sind frühere oder experimentelle Versionen,
+        die Features im Aufbau beinhalten und somit getestet werden können. Man wird nicht über neue Exp. benachrichtigt.</string>
+
+
+</resources>

@@ -1,0 +1,76 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/grey</item>
+        <item name="colorPrimaryDark">@color/greyStatus</item>
+        <item name="colorAccent">@color/grey</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:windowBackground">@color/windowBG</item>
+        <item name="colorControlHighlight">@color/cardViewBGDarK</item> 
+
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+    </style>
+
+    <style name="ThemeSettings" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/grey</item>
+        <item name="colorPrimaryDark">@color/greyStatus</item>
+        <item name="colorAccent">#5a7d9f</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:windowBackground">@color/windowBG</item>
+        <item name="colorControlHighlight">@color/cardViewBGDarK</item> 
+
+        <item name="android:dialogTheme">@style/MyDialogThemePreferences</item>
+        <item name="android:alertDialogTheme">@style/MyDialogThemePreferences</item>
+    </style>
+
+    <style name="MyDialogThemePreferences" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@color/greyStatus</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorAccent">#93afca</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorAlertDialogListItem">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Mein Kram -->
+
+    <style name="ButtonMaterialDarkBlue">
+        <item name="android:background">@color/buttonBG</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="CardViewDark" parent="CardView">
+        <item name="cardBackgroundColor">@color/cardViewBGDarK</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/TextInputLayoutTextcolor</item>
+        <item name="android:textSize">14sp</item>
+        <item name="colorControlNormal">@android:color/holo_blue_bright</item>
+        <item name="colorControlActivated">@android:color/holo_red_dark</item>
+    </style>
+
+    <!-- Experimente -->
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/greyStatus</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorAccent">#ffffff</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
+</resources>

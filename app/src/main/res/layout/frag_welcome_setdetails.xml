@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/welcome_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:background="@color/grey"
+    android:weightSum="5"
+    android:paddingTop="48dp">
+
+    <FrameLayout
+        android:id="@+id/image_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:clipChildren="false">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/icons_einstellungen"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/screen_heading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="10dp"
+        android:textSize="24sp"
+        android:textColor="#ffffff"
+        android:gravity="bottom|center_horizontal"
+        android:text="Letzter Schritt" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/welcome_login_btn"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ButtonMaterialDarkBlue"
+            android:background="@color/userLoginBg"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="Starte Login-Assistent">
+
+        </Button>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/screen_desc"
+        android:text="@string/screen_setdetails_desc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:gravity="top|center_horizontal"
+        android:minHeight="@dimen/welcome_content_min_height"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"/>
+
+</LinearLayout>
