@@ -23,7 +23,7 @@ public class WelcomeScreenFragment extends Fragment {
  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return  (ViewGroup) inflater.inflate(getArguments().getInt(LAYOUT_ID, -1), container, false);
+        return inflater.inflate(getArguments().getInt(LAYOUT_ID, -1), container, false);
     }
 
     @Override

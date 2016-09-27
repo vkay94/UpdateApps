@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -24,13 +23,10 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackDatatype;
-import de.vkay.updateapps.AppUebersicht.Feedback.RecyclerViewAdapterFeedback;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -58,7 +54,7 @@ public class AUFragmentVersionen extends Fragment{
     RecyclerView recyclerView;
     ArrayList<String> array;
     LinearLayoutManager llm;
-    RecyclerViewAdapterExperimental rvE;
+    RAdapterExperimental rvE;
 
     boolean isLoaded = false;
     Button btnLoadExp;
@@ -83,7 +79,7 @@ public class AUFragmentVersionen extends Fragment{
         array = new ArrayList<>();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.auversion_recycler_exp);
-        rvE = new RecyclerViewAdapterExperimental(array, getActivity(), bund);
+        rvE = new RAdapterExperimental(array, getActivity(), bund);
         llm = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(rvE);

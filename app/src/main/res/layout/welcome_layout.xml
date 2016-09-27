@@ -1,6 +1,5 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
@@ -12,7 +11,6 @@
         android:background="@color/dim_foreground_disabled_material_dark"/>
 
     <RelativeLayout
-        android:id="@+id/button_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -29,21 +27,12 @@
             android:textColor="@color/abc_primary_text_material_dark"
             android:background="@android:color/transparent"/>
 
-        <LinearLayout
-            android:id="@+id/circles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true">
-
-        </LinearLayout>
-
         <Button
             android:id="@+id/done"
             android:layout_width="80dp"
             android:layout_height="48dp"
             android:gravity="center"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:text="Fertig"
             android:textSize="16sp"
             android:textColor="@color/abc_primary_text_material_dark"

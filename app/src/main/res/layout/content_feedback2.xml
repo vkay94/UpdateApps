@@ -14,7 +14,6 @@
     android:orientation="vertical">
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/feedback_input_layout_betreff"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:paddingLeft="8dp"
@@ -35,14 +34,13 @@
             android:maxLength="40"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:hint="Betreff"
             android:background="@android:color/transparent" />
 
     </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/feedback_input_layout_nachricht"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
@@ -60,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:paddingTop="8dp"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textColorHint="@android:color/white"
                 android:textColor="@android:color/white"
                 android:textColorHighlight="@android:color/white"

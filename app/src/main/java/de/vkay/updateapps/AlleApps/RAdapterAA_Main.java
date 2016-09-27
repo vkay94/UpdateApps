@@ -17,13 +17,13 @@ import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 
-public class RecyclerAdapterAAMain extends RecyclerView.Adapter<RecyclerAdapterAAMain.ViewHolder>{
+public class RAdapterAA_Main extends RecyclerView.Adapter<RAdapterAA_Main.ViewHolder>{
 
     private List<AlleAppsDatatype> array;
     private Context context, c;
     private SharedPrefs shared;
 
-    public RecyclerAdapterAAMain(List<AlleAppsDatatype> array, Context context){
+    public RAdapterAA_Main(List<AlleAppsDatatype> array, Context context){
         this.array = array;
         this.context = context;
         shared = new SharedPrefs(context);
@@ -66,7 +66,7 @@ public class RecyclerAdapterAAMain extends RecyclerView.Adapter<RecyclerAdapterA
     }
 
     @Override
-    public void onBindViewHolder(RecyclerAdapterAAMain.ViewHolder holder, int position) {
+    public void onBindViewHolder(RAdapterAA_Main.ViewHolder holder, int position) {
 
         holder.cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.cardViewBGDarK));
 

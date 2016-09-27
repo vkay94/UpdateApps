@@ -1,8 +1,6 @@
 package de.vkay.updateapps.User;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,7 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackDatatype;
-import de.vkay.updateapps.AppUebersicht.Feedback.RecyclerViewAdapterFeedback;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -35,7 +32,7 @@ public class UserFeedback extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<FeedbackDatatype> array;
     LinearLayoutManager llm;
-    RecyclerViewAdapterUserFeedback rvAUF;
+    RAdapterUserFeedback rvAUF;
 
     SharedPrefs shared;
 
@@ -64,7 +61,7 @@ public class UserFeedback extends AppCompatActivity {
         recyclerView.setNestedScrollingEnabled(false);
 
         array = new ArrayList<>();
-        rvAUF = new RecyclerViewAdapterUserFeedback(array, this);
+        rvAUF = new RAdapterUserFeedback(array, this);
 
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         itemAnimator.setAddDuration(750);

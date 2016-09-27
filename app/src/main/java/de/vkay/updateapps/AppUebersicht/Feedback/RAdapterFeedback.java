@@ -2,7 +2,6 @@ package de.vkay.updateapps.AppUebersicht.Feedback;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
-import de.vkay.updateapps.AppUebersicht.AUMain;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -27,14 +25,14 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
-public class RecyclerViewAdapterFeedback extends RecyclerView.Adapter<RecyclerViewAdapterFeedback.ViewHolder>{
+public class RAdapterFeedback extends RecyclerView.Adapter<RAdapterFeedback.ViewHolder>{
 
     private List<FeedbackDatatype> array;
     private Context context;
     private SharedPrefs shared;
 
     // Konstruktor
-    public RecyclerViewAdapterFeedback(List<FeedbackDatatype> array, Context context) {
+    public RAdapterFeedback(List<FeedbackDatatype> array, Context context) {
         this.array = array;
         this.context = context;
         this.shared = new SharedPrefs(context);

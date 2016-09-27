@@ -1,18 +1,13 @@
 package de.vkay.updateapps.AppUebersicht;
 
-import android.Manifest;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +26,7 @@ import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.Sonstiges.Sonst;
 
 
-public class RecyclerViewAdapterExperimental extends RecyclerView.Adapter<RecyclerViewAdapterExperimental.ViewHolder> {
+public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimental.ViewHolder> {
 
     List<String> array;
     Context context;
@@ -39,7 +34,7 @@ public class RecyclerViewAdapterExperimental extends RecyclerView.Adapter<Recycl
     SharedPrefs shared;
 
     // Konstruktor
-    public RecyclerViewAdapterExperimental(List<String> array, Context context, Bundle bund) {
+    public RAdapterExperimental(List<String> array, Context context, Bundle bund) {
         this.context = context;
         this.array = array;
         this.bund = bund;

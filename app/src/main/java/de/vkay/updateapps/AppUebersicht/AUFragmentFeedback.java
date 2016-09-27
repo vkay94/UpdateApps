@@ -1,7 +1,6 @@
 package de.vkay.updateapps.AppUebersicht;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,8 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackDatatype;
-import de.vkay.updateapps.AppUebersicht.Feedback.RecyclerViewAdapterFeedback;
-import de.vkay.updateapps.Datenspeicher.SharedPrefs;
+import de.vkay.updateapps.AppUebersicht.Feedback.RAdapterFeedback;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
@@ -42,7 +40,7 @@ public class AUFragmentFeedback extends Fragment {
     RecyclerView recyclerView;
     ArrayList<FeedbackDatatype> array;
     LinearLayoutManager llm;
-    RecyclerViewAdapterFeedback rvAF;
+    RAdapterFeedback rvAF;
 
     SwipeRefreshLayout swipe;
     Bundle bund;
@@ -62,7 +60,7 @@ public class AUFragmentFeedback extends Fragment {
         recyclerView.setNestedScrollingEnabled(false);
 
         array = new ArrayList<>();
-        rvAF = new RecyclerViewAdapterFeedback(array, getActivity());
+        rvAF = new RAdapterFeedback(array, getActivity());
         llm = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(rvAF);

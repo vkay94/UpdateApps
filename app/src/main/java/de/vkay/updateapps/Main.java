@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 import de.vkay.updateapps.AlleApps.AlleApps;
 import de.vkay.updateapps.AlleApps.AlleAppsDatatype;
-import de.vkay.updateapps.AlleApps.RecyclerAdapterAAMain;
+import de.vkay.updateapps.AlleApps.RAdapterAA_Main;
 import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -48,7 +48,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     DB_AlleApps db;
 
     RecyclerView recyclerView;
-    RecyclerAdapterAAMain rvAAA;
+    RAdapterAA_Main rvAAA;
 
     int counter = 0;
 
@@ -67,7 +67,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         recyclerView.setLayoutManager(llm);
 
         ArrayList<AlleAppsDatatype> alleAppsArray = db.getDatabaseAppsRandom5();
-        rvAAA = new RecyclerAdapterAAMain(alleAppsArray, getApplicationContext());
+        rvAAA = new RAdapterAA_Main(alleAppsArray, getApplicationContext());
         recyclerView.setAdapter(rvAAA);
         recyclerView.setHasFixedSize(true);
 
@@ -78,12 +78,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 getAppsInit();
             }
         }
-
-        /*
-        // FCM
-        FirebaseMessaging.getInstance().subscribeToTopic("Global");
-        FirebaseInstanceId.getInstance().getToken();
-        */
     }
 
     public void initialize() {
@@ -131,7 +125,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         shared = new SharedPrefs(getApplicationContext());

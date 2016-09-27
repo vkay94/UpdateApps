@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,14 +17,14 @@ import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 
-public class RecyclerAdapterAlleApps extends RecyclerView.Adapter<RecyclerAdapterAlleApps.ViewHolder> {
+public class RAdapterAlleApps extends RecyclerView.Adapter<RAdapterAlleApps.ViewHolder> {
 
     private List<AlleAppsDatatype> array;
     private Context context, c;
     private SharedPrefs shared;
 
     //Konstruktor
-    public RecyclerAdapterAlleApps(List<AlleAppsDatatype> array, Context context){
+    public RAdapterAlleApps(List<AlleAppsDatatype> array, Context context){
         this.array = array;
         this.context = context;
         shared = new SharedPrefs(context);
@@ -72,7 +71,7 @@ public class RecyclerAdapterAlleApps extends RecyclerView.Adapter<RecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(RecyclerAdapterAlleApps.ViewHolder holder, int position) {
+    public void onBindViewHolder(RAdapterAlleApps.ViewHolder holder, int position) {
 
         holder.cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.cardViewBGDarK));
 
