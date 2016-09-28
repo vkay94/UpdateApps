@@ -60,13 +60,17 @@ public class DB_AlleApps extends SQLiteOpenHelper {
                 "SELECT * FROM ALLEAPPS WHERE " + Const.PAKETNAME + " = '" + paketname + "'", null);
 
         try {
-            return c1 != null && c1.getString(c1.getColumnIndex(Const.VERSION)).equals(version);
+            while (c1.moveToNext()) {
+                return c1.getString(1).equals(version);
+            }
 
         } finally {
             if(c1 != null){
                 c1.close();
             }
         }
+
+        return false;
     }
 
     public ArrayList<AlleAppsDatatype> getDatabaseApps(){

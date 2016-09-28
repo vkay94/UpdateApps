@@ -61,6 +61,11 @@ public class AUFragmentVersionen extends Fragment{
 
     String expChangelog = "";
 
+    boolean isExpanded = false;
+    TextView tvChangelogExpanded;
+
+    ImageView imageExpand;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +97,7 @@ public class AUFragmentVersionen extends Fragment{
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
                         .setTitle(R.string.full_changelog)
                         .setCancelable(true)
-                        .setMessage(Html.fromHtml(bund.getString(Const.CHANGELOG)))
+                        .setMessage(Html.fromHtml(Sonst.splitGetSecond("<x></x><br><br>", bund.getString(Const.CHANGELOG))))
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -144,6 +149,38 @@ public class AUFragmentVersionen extends Fragment{
                     if (textView != null) {
                         textView.setTextSize(13);
                     }
+                }
+            }
+        });
+
+        tvChangelogExpanded = (TextView) view.findViewById(R.id.auversion_tv_changelog_expanded);
+        imageExpand = (ImageView) view.findViewById(R.id.auversion_image_changelog_expand);
+
+        tvChangelog.post(new Runnable() {
+            @Override
+            public void run() {
+                int lc = tvChangelog.getLineCount();
+                System.out.println(lc);
+
+                if (lc == 7) {
+                    tvChangelogExpanded.setText(Html.fromHtml(Sonst.splitGetFirst("<x></x>", bund.getString(Const.CHANGELOG))));
+                    imageExpand.setVisibility(View.VISIBLE);
+                    imageExpand.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (!isExpanded) {
+                                tvChangelogExpanded.setVisibility(View.VISIBLE);
+                                tvChangelog.setVisibility(View.GONE);
+                                imageExpand.setImageDrawable(getActivity().getDrawable(R.drawable.arrow_up));
+                                isExpanded = true;
+                            } else if (isExpanded) {
+                                tvChangelog.setVisibility(View.VISIBLE);
+                                tvChangelogExpanded.setVisibility(View.GONE);
+                                imageExpand.setImageDrawable(getActivity().getDrawable(R.drawable.arrow_down));
+                                isExpanded = false;
+                            }
+                        }
+                    });
                 }
             }
         });

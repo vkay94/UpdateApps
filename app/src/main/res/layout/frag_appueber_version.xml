@@ -7,10 +7,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="de.vkay.updateapps.AppUebersicht.AUMain"
+    android:animateLayoutChanges="true"
     android:padding="@dimen/activity_horizontal_margin">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:animateLayoutChanges="true"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -20,11 +22,12 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"
+                android:id="@+id/auversion_changelog_header"
                 android:text="@string/changelog"/>
 
             <ImageView
@@ -36,12 +39,31 @@
                 android:layout_marginEnd="5dp"
                 android:contentDescription="@string/conDesc"/>
 
+            <ImageView
+                android:id="@+id/auversion_image_changelog_expand"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="5dp"
+                android:src="@drawable/arrow_down"
+                android:visibility="gone"
+                android:contentDescription="@string/conDesc"
+                android:layout_alignBottom="@+id/auversion_image_changelog"
+                android:layout_toEndOf="@+id/auversion_changelog_header" />
+
         </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/auversion_tv_changelog" />
+            android:id="@+id/auversion_tv_changelog"
+            android:maxLines="7"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/auversion_tv_changelog_expanded" />
 
         <View
             android:layout_width="fill_parent"
