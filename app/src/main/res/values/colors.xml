@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="grey">#3a4b54</color>
-    <color name="greyStatus">#2e3d45</color>
-
-    <color name="windowBG">#1F292F</color>
-    <color name="buttonBG">#404f58</color>
-    <color name="cardViewBGDarK">#2b3a43</color>
-    <color name="cardViewBGUpdate">#506876</color>
-
-    <color name="cardViewBGDarKx">#3c4d58</color>
-
-    <color name="white">#ffffff</color>
-
-    <color name="userLoginBg">#4c5b69</color>
     <color name="userLoginBgBtn">#6f8a93</color>
-
+    <color name="cardViewBGUpdate">#506876</color>
+    <color name="userLoginBg">#4c5b69</color>
+    <color name="grey">#3a4b54</color>
+    <color name="buttonBG">#404f58</color>
+    <color name="cardViewBGDarKx">#3c4d58</color>
+    <color name="greyStatus">#2e3d45</color>
+    <color name="cardViewBGDarK">#2b3a43</color>
+    <color name="windowBG">#1F292F</color>
+    <color name="white">#ffffff</color>
     <color name="userRegisterBg">#3e5780</color>
     <color name="userRegisterBgBtn">#5172a7</color>
-
     <color name="TextInputLayoutTextcolor">#51a758</color>
     <color name="TextInputLayoutColorhint">#979da1</color>
-
     <color name="downloadbtn_grey">#97a2a7</color>
-
     <color name="autorColorRecycler">#64dd17</color>
     <color name="expVersion">#9cd25a</color>
-
-    <color name="snack_grey">#303f46</color>
 
 </resources>

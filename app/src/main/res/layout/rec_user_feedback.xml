@@ -17,7 +17,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UpdateApps"
                 android:id="@+id/rec_user_feedback_app"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -26,7 +25,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="vor 3 Tagen"
                 android:layout_alignParentEnd="true"
                 android:gravity="end"
                 android:textSize="11sp"
@@ -44,7 +42,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kommentar"
             android:textSize="16sp"
             android:textStyle="bold"
             android:visibility="gone"
@@ -55,7 +52,6 @@
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ein Text, der hier einfach steht. \nEin Text, der keine weitere Bedeutung aufweißt.\nEin Text, den man so stehen lassen kann. \n\n - poetisch, nicht?"
             android:layout_marginBottom="5dp"
             android:id="@+id/rec_user_feedback_message"/>
 

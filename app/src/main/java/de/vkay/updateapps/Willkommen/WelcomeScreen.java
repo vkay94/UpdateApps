@@ -14,7 +14,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 
 /**
@@ -127,9 +126,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (pager.getCurrentItem() == 0) {
-          //  super.onBackPressed();
-        } else {
+        if (pager.getCurrentItem() != 0) {
             pager.setCurrentItem(pager.getCurrentItem() - 1);
         }
     }

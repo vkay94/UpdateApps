@@ -22,7 +22,7 @@
             android:layout_height="48dp"
             android:gravity="center"
             android:layout_alignParentStart="true"
-            android:text="Überspringen"
+            android:text="@string/welcome_ueberspringen"
             android:textSize="16sp"
             android:textColor="@color/abc_primary_text_material_dark"
             android:background="@android:color/transparent"/>
@@ -33,7 +33,7 @@
             android:layout_height="48dp"
             android:gravity="center"
             android:layout_alignParentEnd="true"
-            android:text="Fertig"
+            android:text="@string/finish"
             android:textSize="16sp"
             android:textColor="@color/abc_primary_text_material_dark"
             android:background="@android:color/transparent"
@@ -50,6 +50,7 @@
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
+            android:contentDescription="@string/conDesc"
             />
         </RelativeLayout>
 

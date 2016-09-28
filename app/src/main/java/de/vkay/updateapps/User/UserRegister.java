@@ -1,13 +1,11 @@
 package de.vkay.updateapps.User;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -69,7 +67,7 @@ public class UserRegister extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Snacks.toastInBackground(context, "Fehler beim Registrieren", Toast.LENGTH_SHORT);
+                Snacks.toastInBackground(context, context.getString(R.string.error), Toast.LENGTH_SHORT);
             }
 
             @Override
@@ -78,7 +76,7 @@ public class UserRegister extends AppCompatActivity {
                     finish();
                     overridePendingTransition(R.anim.enter_activty_backwards, R.anim.exit_activity_backwards);
                 } else {
-                    Snacks.toastInBackground(context, "Benutzername schon vergeben", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(context, getString(R.string.userregister_username_vergeben), Toast.LENGTH_SHORT);
                 }
             }
         });

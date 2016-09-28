@@ -1,20 +1,20 @@
 <resources>
 
-    <string name="app_name">UpdateApps</string>
-    <string name="app_package">de.vkay.updateapps</string>
+    <string name="app_name" translatable="false">UpdateApps</string>
+    <string name="app_package" translatable="false">de.vkay.updateapps</string>
 
     <string name="title_activity_alle_apps">AlleApps</string>
     <string name="title_activity_feedback">Beitrag verfasen</string>
     <string name="title_activity_cpanel">Einstellungen</string>
     <string name="title_activity_user_feedback">Eigene Beiträge</string>
+    <string name="title_activity_user_login">Anmelden</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <!-- Navigation Drawer Items -->
     <string name="nav_allapps">Alle Apps</string>
     <string name="nav_menu_general">Allgemein</string>
-    <string name="nav_settings">Login</string>
     <string name="nav_web">Webseite</string>
 
     <!-- WelcomeScreen -->
@@ -22,12 +22,81 @@
     <string name="screen1_desc">Finde heraus, was es alles Neues gibt.</string>
     <string name="screen2_title">Bleibe aktuell!</string>
     <string name="screen2_desc">Lade dir neue Apps herunter.</string>
-    <string name="screen_setdetails_desc">Logge dich ein, um Feedback zu schreiben und um keine App zu verpassen.</string>
-
-    <string name="title_activity_user_login">Login</string>
+    <string name="screen_setdetails_desc">Melde dich an, um Feedback zu schreiben und um keine App zu verpassen.</string>
 
     <string name="experimental">Die folgenden Versionen sind frühere oder experimentelle Versionen,
         die Features im Aufbau beinhalten und somit getestet werden können. Man wird nicht über neue Exp. benachrichtigt.</string>
-
+    <string name="conDesc" translatable="false">contentDesc</string>
+    <string name="info">Info</string>
+    <string name="menu_send">Sende</string>
+    <string name="nav_user_panel">Benutzer-Panel</string>
+    <string name="user_register">Registrieren</string>
+    <string name="nav_header_text" translatable="false">UpdateApps</string>
+    <string name="welcome_ueberspringen">Überspringen</string>
+    <string name="user_login_header">Anmelden</string>
+    <string name="changelog">Changelog</string>
+    <string name="user_panel_anpassungen">Anpassungen</string>
+    <string name="main_einige_apps">Einige Apps</string>
+    <string name="finish">Fertig</string>
+    <string name="feedback_betreff">Betreff</string>
+    <string name="main_more">Mehr</string>
+    <string name="welcome_last_step">Letzter Schritt</string>
+    <string name="user_pass">Passwort:</string>
+    <string name="user_panel_newname">Neuer Name</string>
+    <string name="welcome_start_login_assistent">Starte Login-Assistent</string>
+    <string name="main_streichen">Streiche mal von links nach rechts</string>
+    <string name="au_versionen_oldexp">Ältere und experim. Versionen</string>
+    <string name="change">Ändern</string>
+    <string name="download">Herunterladen</string>
+    <string name="message">Nachricht</string>
+    <string name="user_register_pass_ern">Passw. (ern.):</string>
+    <string name="load">Laden</string>
+    <string name="feedback_install_anh">Installierte Version anhängen</string>
+    <string name="login">Anmelden</string>
+    <string name="register">Registrieren</string>
+    <string name="description">Beschreibung</string>
+    <string name="user_panel_meine_beitr">Meine Beiträge</string>
+    <string name="settings">Einstellungen</string>
+    <string name="logout">Ausloggen</string>
+    <string name="login_username">Benutzer:</string>
+    <string name="dialog_back">Zurück</string>
+    <string name="dialog_remove_feedback">Willst du deinen Beitrag wirklich verwerfen?</string>
+    <string name="dialog_verwerfen">Verwerfen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="error_send">Fehler beim Senden</string>
+    <string name="send_success">Senden erfolgreich</string>
+    <string name="delete_error">Fehler beim Löschen</string>
+    <string name="delete_success">Löschen erfolgreich</string>
+    <string name="dialog_delete">Löschen</string>
+    <string name="dialog_delete_msg">Willst du den Beitrag wirklich entfernen?</string>
+    <string name="no_wifi_connection"><![CDATA[Keine WiFi-Verbindung (-> Einstellungen)]]></string>
+    <string name="often">Oft genug geladen</string>
+    <string name="app_abonniert">App abonniert</string>
+    <string name="app_deabonniert">App deabonniert</string>
+    <string name="download_started">Download gestartet</string>
+    <string name="permission_denied">Verweigert</string>
+    <string name="full_changelog">Kompletter Changelog</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="installed_experimental"><![CDATA[<b>Installierte Exp.-Version: </b>]]></string>
+    <string name="experim_changelog" translatable="false">Experim. Changelog</string>
+    <string name="error">Fehler</string>
+    <string name="no_experim_builds_available">Keine experim. Versionen verfügbar.</string>
+    <string name="aumain_uebersicht">Übersicht</string>
+    <string name="aumain_version">Versionen</string>
+    <string name="aumain_feedback" translatable="false">Feedback</string>
+    <string name="title_benutzer">BenutzerPanel</string>
+    <string name="success">Hat geklappt</string>
+    <string name="user_panel_name_vergeben">Name bereits vergeben</string>
+    <string name="userlogin_passname_falsch">Benutzer oder Passwort falsch</string>
+    <string name="login_success">Login erfolgreich</string>
+    <string name="userregister_username_vergeben">Benutzername schon vergeben</string>
+    <string name="update_database">Datenbank aktualisiert</string>
+    <string name="settings_autostart_header" translatable="false">Autostart-Assistent</string>
+    <string name="settings_autoinstall_text">Startet den Package-Installer direkt nach Download</string>
+    <string name="network">Netzwerk</string>
+    <string name="settings_global_header">Globale Ankündigungen</string>
+    <string name="settings_global_text">Erhalte eine Benachrichtigung, wenn bspw. eine neue App im Sortiment ist</string>
+    <string name="setttings_wifionly_header">Nur WLAN</string>
+    <string name="settings_wifionly_text">Limitiert den Download der Apps auf eine WLAN-Verbindung</string>
 
 </resources>

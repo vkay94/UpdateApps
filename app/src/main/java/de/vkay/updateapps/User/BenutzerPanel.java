@@ -1,27 +1,21 @@
 package de.vkay.updateapps.User;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.animation.GridLayoutAnimationController;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
@@ -104,7 +98,7 @@ public class BenutzerPanel extends AppCompatActivity implements View.OnClickList
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setTitle("BenutzerPanel");
+        actionBar.setTitle(R.string.title_benutzer);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +159,7 @@ public class BenutzerPanel extends AppCompatActivity implements View.OnClickList
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Snacks.toastInBackground(getApplicationContext(), "Fehler bei der Verbindung", Toast.LENGTH_SHORT);
+                Snacks.toastInBackground(getApplicationContext(), getString(R.string.error), Toast.LENGTH_SHORT);
             }
 
             @Override
@@ -181,12 +175,12 @@ public class BenutzerPanel extends AppCompatActivity implements View.OnClickList
                             username.setText(stringNewName);
                         }
                     });
-                    Snacks.toastInBackground(getApplicationContext(), "Hat geklappt", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(getApplicationContext(), getString(R.string.success), Toast.LENGTH_SHORT);
                 } else if (responseString.contains("Fehler")) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            textInputNewName.setError("Name bereits vergeben");
+                            textInputNewName.setError(getString(R.string.user_panel_name_vergeben));
                         }
                     });
                 }

@@ -15,7 +15,7 @@ public class SharedPrefs {
     public SharedPrefs(Context context){
         this.context = context;
         shared = PreferenceManager.getDefaultSharedPreferences(context);
-        editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor = shared.edit();
         pInfo = null;
     }
 

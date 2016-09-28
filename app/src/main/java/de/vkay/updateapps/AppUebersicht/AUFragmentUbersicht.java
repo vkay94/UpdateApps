@@ -7,14 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
@@ -37,7 +34,6 @@ import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.Sonstiges.Sonst;
-import de.vkay.updateapps.User.Einstellungen;
 
 public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
@@ -99,13 +95,13 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
             public void onClick(View view) {
                 if (counter < 2) {
                     if (shared.getWifiDownloadStatus() && !Sonst.isWifiConnected(getActivity())) {
-                        Snacks.toastInBackground(getActivity(), "Keine WiFi-Verbindung (-> Einstellungen)", Snacks.LONG);
+                        Snacks.toastInBackground(getActivity(), getString(R.string.no_wifi_connection), Snacks.LONG);
                     } else {
                         permission_check_download();
                         counter++;
                     }
                 } else {
-                    Snacks.toastInBackground(getActivity(), "Oft genug geladen", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(getActivity(), getString(R.string.often), Toast.LENGTH_SHORT);
                 }
             }
         });
@@ -118,12 +114,12 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
                 if (compoundButton.isChecked()) {
                     shared.saveApp(bund.getString(Const.PAKETNAME));
                     FirebaseMessaging.getInstance().subscribeToTopic(bund.getString(Const.PAKETNAME));
-                    Snacks.toastInBackground(getActivity(), "App abonniert", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(getActivity(), getString(R.string.app_abonniert), Toast.LENGTH_SHORT);
                 } else
                 if (!compoundButton.isChecked()) {
                     shared.removeApp(bund.getString(Const.PAKETNAME));
                     FirebaseMessaging.getInstance().unsubscribeFromTopic(bund.getString(Const.PAKETNAME));
-                    Snacks.toastInBackground(getActivity(), "App deabonniert", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(getActivity(), getString(R.string.app_deabonniert), Toast.LENGTH_SHORT);
                 }
             }
         });
@@ -159,7 +155,7 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
         }
 
         //new Snacks().Grey(getActivity().findViewById(android.R.id.content), getActivity(), "Download gestartet", Snacks.SHORT);
-        Snacks.toastInBackground(getActivity(), "Download gestartet", Toast.LENGTH_LONG);
+        Snacks.toastInBackground(getActivity(), getString(R.string.download_started), Toast.LENGTH_LONG);
     }
 
     // Permissions
@@ -169,7 +165,6 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-                return;
             }
         } else {
             downloadApk(downloadLink);
@@ -181,6 +176,6 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
         if(requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             downloadApk(downloadLink);
         } else
-            Snacks.toastInBackground(getActivity(), "Verweigert", Toast.LENGTH_SHORT);
+            Snacks.toastInBackground(getActivity(), getString(R.string.permission_denied), Toast.LENGTH_SHORT);
     }
 }

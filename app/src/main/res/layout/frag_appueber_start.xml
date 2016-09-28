@@ -30,40 +30,39 @@
                         android:layout_width="80dp"
                         android:layout_height="120dp"
                         android:src="@mipmap/ic_launcher"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/austart_imageIcon"/>
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/austart_imageIcon"
+                        android:contentDescription="@string/conDesc"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/austart_imageIcon"
+                        android:layout_toEndOf="@id/austart_imageIcon"
                         android:paddingTop="10dp"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:gravity="center_horizontal"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold"
-                        android:text="h"
                         android:id="@+id/austart_version"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/austart_imageIcon"
+                        android:layout_toEndOf="@id/austart_imageIcon"
                         android:layout_below="@id/austart_version"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:gravity="center"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold|italic"
-                        android:text="20.11.2015"
                         android:id="@+id/austart_date"/>
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/austart_date"
-                        android:text="Herunterladen"
+                        android:text="@string/download"
                         style="@style/ButtonMaterialDarkBlue"
-                        android:layout_toRightOf="@id/austart_imageIcon"
+                        android:layout_toEndOf="@id/austart_imageIcon"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="30dp"
                         android:layout_marginBottom="8dp"
@@ -92,16 +91,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"
-                android:text="Beschreibung"/>
+                android:text="@string/description"/>
 
             <TextView
                 android:id="@+id/austart_beschreibung"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Diese App ist für Updates zuständig. Eine Internetverbindung ist erforderlich."/>
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
 import de.vkay.updateapps.R;
-import de.vkay.updateapps.Sonstiges.Snacks;
 
 public class AlleApps extends AppCompatActivity {
 
@@ -21,7 +20,6 @@ public class AlleApps extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
 
     DB_AlleApps db_alleApps;
-    Snacks snacks;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -43,11 +41,9 @@ public class AlleApps extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        snacks = new Snacks();
-
         allAppsArray = new ArrayList<>();
 
-        db_alleApps = new DB_AlleApps(this, null, 1);
+        db_alleApps = new DB_AlleApps(this);
         allAppsArray = db_alleApps.getDatabaseApps();
 
         rvAAA = new RAdapterAlleApps(allAppsArray, getApplicationContext());

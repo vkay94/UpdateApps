@@ -16,7 +16,6 @@ import java.util.List;
 
 import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackDatatype;
 import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
-import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
@@ -29,15 +28,13 @@ import okhttp3.Request;
 public class RAdapterUserFeedback extends RecyclerView.Adapter<RAdapterUserFeedback.ViewHolder> {
 
     List<FeedbackDatatype> array;
-    SharedPrefs shared;
     Context context;
     DB_AlleApps db;
 
     public RAdapterUserFeedback(List<FeedbackDatatype> array, Context context) {
         this.array = array;
         this.context = context;
-        shared = new SharedPrefs(context);
-        db = new DB_AlleApps(context, null, 1);
+        db = new DB_AlleApps(context);
     }
 
     @Override
@@ -133,10 +130,10 @@ public class RAdapterUserFeedback extends RecyclerView.Adapter<RAdapterUserFeedb
 
     public void showDeleteDialog(final int position) {
         AlertDialog.Builder explDialog = new AlertDialog.Builder(context, R.style.MyDialogTheme);
-        explDialog.setTitle("Löschen")
-                .setMessage("Willst du den Beitrag wirklich entfernen?");
+        explDialog.setTitle(R.string.dialog_delete)
+                .setMessage(R.string.dialog_delete_msg);
 
-        explDialog.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
+        explDialog.setPositiveButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteEntry(array.get(position).date);
@@ -145,7 +142,7 @@ public class RAdapterUserFeedback extends RecyclerView.Adapter<RAdapterUserFeedb
                 dialog.dismiss();
             }
         });
-        explDialog.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
+        explDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

@@ -52,7 +52,7 @@ public class Snacks {
 
     public void Grey (View view, Context context, String text, int dauer){
         snack = Snackbar.make(findSuitableParent(view), text, dauer);
-        setupVG(String.format("#%06X", 0xFFFFFF & ContextCompat.getColor(context, R.color.snack_grey)));
+        setupVG(String.format("#%06X", 0xFFFFFF & ContextCompat.getColor(context, R.color.greyStatus)));
 
         snack.show();
     }

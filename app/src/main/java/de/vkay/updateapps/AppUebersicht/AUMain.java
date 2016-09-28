@@ -2,11 +2,8 @@ package de.vkay.updateapps.AppUebersicht;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,25 +13,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackActivity;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
-import de.vkay.updateapps.Sonstiges.Snacks;
 
 
 public class AUMain extends AppCompatActivity {
 
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -43,7 +33,6 @@ public class AUMain extends AppCompatActivity {
 
     Bundle bundle;
     SharedPrefs shared;
-    public CoordinatorLayout coordinatorLayout;
     AppBarLayout appBar;
 
     public static boolean fabVisible = false;
@@ -55,13 +44,12 @@ public class AUMain extends AppCompatActivity {
 
         initToolbar();
 
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.appueber_coord);
         appBar = (AppBarLayout) findViewById(R.id.htab_appbar);
 
         final FloatingActionButton fab_send = (FloatingActionButton) findViewById(R.id.appueber_fab);
         fab_send.setVisibility(View.INVISIBLE);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.appueber_viewpager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
@@ -171,11 +159,11 @@ public class AUMain extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Übersicht";
+                    return getString(R.string.aumain_uebersicht);
                 case 1:
-                    return "Versionen";
+                    return getString(R.string.aumain_version);
                 case 2:
-                    return "Feedback";
+                    return getString(R.string.aumain_feedback);
             }
             return null;
         }

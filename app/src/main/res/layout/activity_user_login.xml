@@ -18,14 +18,15 @@
         android:layout_height="125dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="75dp"
-        android:src="@drawable/icons_einstellungen"/>
+        android:src="@drawable/icons_einstellungen"
+        android:contentDescription="@string/conDesc"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/user_login_header"
         android:gravity="center_horizontal"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"/>
@@ -37,15 +38,15 @@
 
         <TextView
             android:layout_width="100dp"
-            android:text="Benutzer: "
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:gravity="center_vertical"
             android:id="@+id/user_tv_username"
+            android:text="@string/login_username"
             android:layout_height="40dp" />
 
         <EditText
             android:layout_width="160dp"
-            android:layout_toRightOf="@+id/user_tv_username"
+            android:layout_toEndOf="@+id/user_tv_username"
             android:maxLines="1"
             android:maxLength="25"
             android:id="@+id/user_edit_username"
@@ -54,11 +55,11 @@
 
         <TextView
             android:layout_width="100dp"
-            android:text="Passwort: "
+            android:text="@string/user_pass"
             android:gravity="center_vertical"
             android:layout_below="@id/user_tv_username"
             android:layout_marginTop="10dp"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:id="@+id/user_tv_userpassword"
             android:layout_height="40dp" />
 
@@ -66,7 +67,7 @@
             android:layout_width="160dp"
             android:id="@+id/user_edit_userpassword"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/user_tv_userpassword"
+            android:layout_toEndOf="@id/user_tv_userpassword"
             android:layout_below="@+id/user_edit_username"
             android:inputType="textPassword"
             android:layout_height="40dp" />
@@ -78,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="45dp"
-        android:text="Login"
+        android:text="@string/login"
         android:id="@+id/user_btn_login"
         android:background="@color/userLoginBgBtn"/>
 
@@ -93,7 +94,7 @@
             android:gravity="center"
             android:layout_height="40dp"
             android:id="@+id/user_tv_register"
-            android:text="Registrieren" />
+            android:text="@string/register" />
 
 
     </RelativeLayout>

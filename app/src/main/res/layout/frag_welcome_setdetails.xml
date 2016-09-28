@@ -22,7 +22,8 @@
             android:src="@drawable/icons_einstellungen"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:contentDescription="@string/conDesc"/>
 
     </FrameLayout>
 
@@ -37,7 +38,7 @@
         android:textSize="24sp"
         android:textColor="#ffffff"
         android:gravity="bottom|center_horizontal"
-        android:text="Letzter Schritt" />
+        android:text="@string/welcome_last_step" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +56,7 @@
             android:background="@color/userLoginBg"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:text="Starte Login-Assistent">
+            android:text="@string/welcome_start_login_assistent">
 
         </Button>
 

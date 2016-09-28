@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import de.vkay.updateapps.AppUebersicht.AUMain;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -119,17 +118,17 @@ public class FeedbackActivity extends AppCompatActivity {
 
     public void showCancelDialog() {
         AlertDialog.Builder explDialog = new AlertDialog.Builder(this, R.style.MyDialogTheme);
-        explDialog.setTitle("Zurück")
+        explDialog.setTitle(R.string.dialog_back)
                 .setCancelable(false)
-                .setMessage("Willst du deinen Beitrag wirklich verwerfen?");
+                .setMessage(R.string.dialog_remove_feedback);
 
-        explDialog.setPositiveButton("Verwerfen", new DialogInterface.OnClickListener() {
+        explDialog.setPositiveButton(R.string.dialog_verwerfen, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
             }
         });
-        explDialog.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
+        explDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -160,13 +159,13 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                Snacks.toastInBackground(context, "Fehler beim Senden", Toast.LENGTH_SHORT);
+                Snacks.toastInBackground(context, getString(R.string.error_send), Toast.LENGTH_SHORT);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-                Snacks.toastInBackground(context, "Senden erfolgreich", Toast.LENGTH_SHORT);
+                Snacks.toastInBackground(context, getString(R.string.send_success), Toast.LENGTH_SHORT);
             }
         });
     }

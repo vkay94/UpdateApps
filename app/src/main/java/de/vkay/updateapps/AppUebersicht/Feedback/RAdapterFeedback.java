@@ -126,23 +126,23 @@ public class RAdapterFeedback extends RecyclerView.Adapter<RAdapterFeedback.View
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
-                Snacks.toastInBackground(context, "Fehler beim Löschen", Toast.LENGTH_SHORT);
+                Snacks.toastInBackground(context, context.getString(R.string.delete_error), Toast.LENGTH_SHORT);
             }
 
             @Override
             public void onResponse(Call call, okhttp3.Response response) throws IOException {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-                Snacks.toastInBackground(context, "Löschen erfolgreich", Toast.LENGTH_SHORT);
+                Snacks.toastInBackground(context, context.getString(R.string.delete_success), Toast.LENGTH_SHORT);
             }
         });
     }
 
     public void showDeleteDialog(final int position) {
         AlertDialog.Builder explDialog = new AlertDialog.Builder(context, R.style.MyDialogTheme);
-        explDialog.setTitle("Löschen")
-                .setMessage("Willst du den Beitrag wirklich entfernen?");
+        explDialog.setTitle(R.string.dialog_delete)
+                .setMessage(R.string.dialog_delete_msg);
 
-        explDialog.setPositiveButton("Löschen", new DialogInterface.OnClickListener() {
+        explDialog.setPositiveButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteEntry(array.get(position).date);
@@ -151,7 +151,7 @@ public class RAdapterFeedback extends RecyclerView.Adapter<RAdapterFeedback.View
                 dialog.dismiss();
             }
         });
-        explDialog.setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
+        explDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

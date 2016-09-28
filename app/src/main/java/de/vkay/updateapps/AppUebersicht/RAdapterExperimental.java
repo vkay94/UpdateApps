@@ -58,7 +58,7 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
                     int pos = getLayoutPosition();
 
                     if (shared.getWifiDownloadStatus() && !Sonst.isWifiConnected(context)) {
-                        Snacks.toastInBackground(context, "Keine WiFi-Verbindung (-> Einstellungen)", Snacks.LONG);
+                        Snacks.toastInBackground(context, context.getString(R.string.no_wifi_connection), Snacks.LONG);
                     } else {
                         downloadApk(Const.BASE_DOWNLOAD_FILES + bund.getString(Const.PAKETNAME) +
                                 "/exp/" + array.get(pos) + ".apk", array.get(pos));
@@ -119,6 +119,6 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
             context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
 
-        Snacks.toastInBackground(context, "Download gestartet", Toast.LENGTH_SHORT);
+        Snacks.toastInBackground(context, context.getString(R.string.download_started), Toast.LENGTH_SHORT);
     }
 }

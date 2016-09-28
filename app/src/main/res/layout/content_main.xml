@@ -28,17 +28,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="Einige Apps"
+                    android:text="@string/main_einige_apps"
                     android:layout_margin="12dp"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="20sp"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_main_more"
                     android:layout_alignParentEnd="true"
-                    android:text="Mehr"
+                    android:text="@string/main_more"
                     android:layout_gravity="end"
                     android:background="@android:color/transparent"/>
 
@@ -57,8 +57,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Streiche mal von links nach rechts"
-            android:textSize="18dp"
+            android:text="@string/main_streichen"
+            android:textSize="18sp"
             android:visibility="invisible"
             android:id="@+id/tv_main_streichen"
             android:gravity="center_horizontal"

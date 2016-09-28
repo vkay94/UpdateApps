@@ -35,7 +35,7 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             android:textSize="16sp"
-            android:hint="Betreff"
+            android:hint="@string/feedback_betreff"
             android:background="@android:color/transparent" />
 
     </android.support.design.widget.TextInputLayout>
@@ -62,7 +62,7 @@
                 android:textColorHint="@android:color/white"
                 android:textColor="@android:color/white"
                 android:textColorHighlight="@android:color/white"
-                android:hint="Nachricht" />
+                android:hint="@string/message" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@android:color/white"
-            android:text="Installierte Version anhängen"
+            android:text="@string/feedback_install_anh"
             android:id="@+id/feedback_checkbox"/>
 
     </LinearLayout>

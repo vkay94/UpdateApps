@@ -22,7 +22,8 @@
             android:src="@drawable/ic_fire_big"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:contentDescription="@string/conDesc"/>
 
     </FrameLayout>
 

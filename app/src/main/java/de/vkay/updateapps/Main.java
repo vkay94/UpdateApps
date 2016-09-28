@@ -93,7 +93,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
-        db = new DB_AlleApps(this, null, 1);
+        db = new DB_AlleApps(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -223,7 +223,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                     String jsonData = response.body().string();
                     JSONArray Jarray = new JSONObject(jsonData).getJSONArray("updateapps");
 
-                    ArrayList<String> appsOnServer = new ArrayList<String>();
+                    ArrayList<String> appsOnServer = new ArrayList<>();
 
                     for (int i = 0; i < Jarray.length(); i++) {
                         JSONObject obj = Jarray.getJSONObject(i);
@@ -259,7 +259,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                     e.printStackTrace();
                 }
 
-                new Snacks().Grey(coordinatorLayout_main, getApplicationContext(), "Datenbank aktualisiert", Snacks.SHORT);
+                new Snacks().Grey(coordinatorLayout_main, getApplicationContext(), getString(R.string.update_database), Snacks.SHORT);
             }
         });
     }
@@ -308,7 +308,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Neue App hinzugefügt: " + paketname);
             }
         });
     }

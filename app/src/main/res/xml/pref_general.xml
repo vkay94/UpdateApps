@@ -1,11 +1,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="Allgemein">
+        android:title="@string/nav_menu_general">
 
         <CheckBoxPreference
-            android:title="Autostart-Assistent"
-            android:summary="Startet den Package-Installer direkt nach Download"
+            android:title="@string/settings_autostart_header"
+            android:summary="@string/settings_autoinstall_text"
             android:defaultValue="true"
             android:key="autostart_install"
             />
@@ -13,11 +13,11 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Netzwerk">
+        android:title="@string/network">
 
         <CheckBoxPreference
-            android:title="Globale Ankündigungen"
-            android:summary="Erhalte eine Benachrichtigung, wenn bspw. eine neue App im Sortiment ist"
+            android:title="@string/settings_global_header"
+            android:summary="@string/settings_global_text"
             android:defaultValue="false"
             android:key="global_notification"
             />
@@ -25,8 +25,8 @@
         <SwitchPreference
             android:defaultValue="true"
             android:key="wifi_download"
-            android:summary="Limitiert den Download der Apps auf eine WLAN-Verbindung"
-            android:title="Nur WLAN" />
+            android:summary="@string/settings_wifionly_text"
+            android:title="@string/setttings_wifionly_header" />
 
         Preference
             android:title="Logout"

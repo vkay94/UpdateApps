@@ -87,9 +87,9 @@ public class UserLogin extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.body().string().matches("Pech")) {
-                    Snacks.toastInBackground(context, "Benutzer oder Passwort falsch", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(context, getString(R.string.userlogin_passname_falsch), Toast.LENGTH_SHORT);
                 } else {
-                    Snacks.toastInBackground(context, "Login erfolgreich", Toast.LENGTH_SHORT);
+                    Snacks.toastInBackground(context, getString(R.string.login_success), Toast.LENGTH_SHORT);
                     shared.setUsername(username);
                     shared.setLoggedInStatus(true);
                     setResult(2);

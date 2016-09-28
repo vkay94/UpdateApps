@@ -90,10 +90,10 @@ public class AUFragmentVersionen extends Fragment{
             public void onClick(View view) {
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
-                        .setTitle("Kompletter Changelog")
+                        .setTitle(R.string.full_changelog)
                         .setCancelable(true)
                         .setMessage(Html.fromHtml(bund.getString(Const.CHANGELOG)))
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.dismiss();
@@ -111,7 +111,7 @@ public class AUFragmentVersionen extends Fragment{
 
         if (shared.isTestBuild(bund.getString(Const.PAKETNAME))) {
             TextView tvExp = (TextView) view.findViewById(R.id.auversion_tv_expversion);
-            String s = "<b>Installierte Exp.-Version: </b>" + shared.getInstalledAppVersion(bund.getString(Const.PAKETNAME));
+            String s = getString(R.string.installed_experimental) + shared.getInstalledAppVersion(bund.getString(Const.PAKETNAME));
             tvExp.setText(Html.fromHtml(s));
             tvExp.setTextColor(ContextCompat.getColor(getActivity(), R.color.expVersion));
         }
@@ -128,7 +128,7 @@ public class AUFragmentVersionen extends Fragment{
                     }
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
-                            .setTitle("Experim. Changelog")
+                            .setTitle(R.string.experim_changelog)
                             .setCancelable(true)
                             .setMessage(expChangelog)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -167,7 +167,7 @@ public class AUFragmentVersionen extends Fragment{
         if(requestCode == 200 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             loadFiles();
         } else
-            Snacks.toastInBackground(getActivity(), "Verweigert", Toast.LENGTH_SHORT);
+            Snacks.toastInBackground(getActivity(), getString(R.string.permission_denied), Toast.LENGTH_SHORT);
     }
 
     public void loadFiles() {
@@ -179,7 +179,7 @@ public class AUFragmentVersionen extends Fragment{
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println("Fehler bei Dateiladen");
+                System.out.println(getString(R.string.error));
             }
 
             @Override
@@ -196,13 +196,13 @@ public class AUFragmentVersionen extends Fragment{
                             public void run() {
                                 rvE.newInsert(file_name, 0);
                                 isLoaded = true;
-                                btnLoadExp.setText("Info");
+                                btnLoadExp.setText(R.string.info);
                             }
                         });
                     }
 
                     if (array.length() == 0) {
-                        Snacks.toastInBackground(getActivity(), "Keine experim. Versionen verfügbar.", Toast.LENGTH_LONG);
+                        Snacks.toastInBackground(getActivity(), getString(R.string.no_experim_builds_available), Toast.LENGTH_LONG);
                     }
 
                 } catch (JSONException e) {
@@ -221,7 +221,6 @@ public class AUFragmentVersionen extends Fragment{
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println("Fehler bei Laden");
             }
 
             @Override

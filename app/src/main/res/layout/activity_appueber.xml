@@ -28,7 +28,8 @@
                 android:background="@drawable/bg_material_darkblue"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                android:contentDescription="@string/conDesc"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

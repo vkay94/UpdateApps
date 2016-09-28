@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bg_material_darkblue"/>
+                android:src="@drawable/bg_material_darkblue"
+                android:contentDescription="@string/conDesc"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

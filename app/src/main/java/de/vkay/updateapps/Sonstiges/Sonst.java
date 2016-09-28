@@ -4,15 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.design.widget.TextInputLayout;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class Sonst {
@@ -72,9 +70,8 @@ public class Sonst {
         String[] list = string.split("\\s+");
         ArrayList<String> array = new ArrayList<>();
 
-        for (int i = 0; i < list.length; i++) {
-            array.add(list[i]);
-        }
+        Collections.addAll(array, list);
+
         return array;
     }
 

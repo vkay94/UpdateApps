@@ -25,7 +25,7 @@
                 android:textSize="19sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"
-                android:text="Changelog"/>
+                android:text="@string/changelog"/>
 
             <ImageView
                 android:id="@+id/auversion_image_changelog"
@@ -33,15 +33,15 @@
                 android:layout_height="28dp"
                 android:src="@drawable/information"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp" />
+                android:layout_marginEnd="5dp"
+                android:contentDescription="@string/conDesc"/>
 
         </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/auversion_tv_changelog"
-            android:text="Platzhalter" />
+            android:id="@+id/auversion_tv_changelog" />
 
         <View
             android:layout_width="fill_parent"
@@ -58,7 +58,7 @@
             android:textSize="19sp"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"
-            android:text="Ältere und experim. Versionen"/>
+            android:text="@string/au_versionen_oldexp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/ButtonMaterialDarkBlue"
-            android:text="Laden"
+            android:text="@string/load"
             android:id="@+id/auversion_btn_load"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"/>

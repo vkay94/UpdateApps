@@ -20,7 +20,7 @@ public class Const {
     // User
     public static String USER_NAME = "name";
     public static String USER_PASS = "passwort";
-    public static String USER_APPS = "apps";
+    //public static String USER_APPS = "apps";
 
     // Webseite
     public static String WEBSITE = "http://vkay.coolpage.biz";
@@ -30,7 +30,7 @@ public class Const {
     // Php Scripts
     public static String GETAPPS = "getApps.php";
     public static String GETFEED = "getFeedback.php";
-    public static String GETUSER = "getUser.php";
+    //public static String GETUSER = "getUser.php";
     public static String WRITEFEED = "writeFeedback.php";
     public static String REGISTERUSER = "registerUser.php";
     public static String LOGINUSER = "loginUser.php";

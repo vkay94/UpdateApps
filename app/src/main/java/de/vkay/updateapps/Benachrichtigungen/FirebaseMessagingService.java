@@ -5,22 +5,18 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-import android.widget.RemoteViews;
 
 import com.google.firebase.messaging.RemoteMessage;
 
-import java.util.Random;
-
 import de.vkay.updateapps.Main;
 import de.vkay.updateapps.R;
-import de.vkay.updateapps.Sonstiges.Sonst;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService{
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        String topicName = Sonst.splitGetSecond("/topics/", remoteMessage.getFrom());
+        //String topicName = Sonst.splitGetSecond("/topics/", remoteMessage.getFrom());
 
         showNotification(
                 remoteMessage.getData().get("pMessage"),

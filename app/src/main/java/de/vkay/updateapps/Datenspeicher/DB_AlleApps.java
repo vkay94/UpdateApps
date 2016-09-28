@@ -14,8 +14,8 @@ import de.vkay.updateapps.Sonstiges.Const;
 
 public class DB_AlleApps extends SQLiteOpenHelper {
 
-    public DB_AlleApps(Context context, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "AlleApps.db", factory, version);
+    public DB_AlleApps(Context context) {
+        super(context, "AlleApps.db", null, 1);
     }
 
     @Override
@@ -59,10 +59,14 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         Cursor c1 = db.rawQuery(
                 "SELECT * FROM ALLEAPPS WHERE " + Const.PAKETNAME + " = '" + paketname + "'", null);
 
-        while(c1.moveToNext()){
-            return c1.getString(c1.getColumnIndex(Const.VERSION)).equals(version);
+        try {
+            return c1 != null && c1.getString(c1.getColumnIndex(Const.VERSION)).equals(version);
+
+        } finally {
+            if(c1 != null){
+                c1.close();
+            }
         }
-        return false;
     }
 
     public ArrayList<AlleAppsDatatype> getDatabaseApps(){
@@ -71,29 +75,25 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(
                 "SELECT * FROM ALLEAPPS", null);
 
-        while (c.moveToNext()){
-            array.add(new AlleAppsDatatype(
-                    c.getString(0),
-                    c.getString(1),
-                    c.getString(2),
-                    c.getString(3),
-                    c.getString(4),
-                    c.getString(5)
-            ));
-        }
-        return array;
-    }
+        try {
 
-    public boolean checkAnyEntryExists() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT " + Const.PAKETNAME + " FROM ALLEAPPS", null);
+            while (c.moveToNext()){
+                array.add(new AlleAppsDatatype(
+                        c.getString(0), // Name
+                        c.getString(1), // Paketname
+                        c.getString(2), // Version
+                        c.getString(3), // Datum
+                        c.getString(4), // Beschreibung
+                        c.getString(5)  // Version
+                ));
+            }
+            return array;
 
-        if(c.getCount() <= 0){
-            c.close();
-            return false;
+        } finally {
+            if(c != null){
+                c.close();
+            }
         }
-        c.close();
-        return true;
     }
 
     public ArrayList<AlleAppsDatatype> getDatabaseAppsRandom5(){
@@ -101,17 +101,25 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         ArrayList<AlleAppsDatatype> array = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM ALLEAPPS ORDER BY RANDOM() LIMIT 5", null);
 
-        while (c.moveToNext()){
-            array.add(new AlleAppsDatatype(
-                    c.getString(0),
-                    c.getString(1),
-                    c.getString(2),
-                    c.getString(3),
-                    c.getString(4),
-                    c.getString(5)
-            ));
+        try {
+
+            while (c.moveToNext()){
+                array.add(new AlleAppsDatatype(
+                        c.getString(0),
+                        c.getString(1),
+                        c.getString(2),
+                        c.getString(3),
+                        c.getString(4),
+                        c.getString(5)
+                ));
+            }
+            return array;
+
+        } finally {
+            if(c != null){
+                c.close();
+            }
         }
-        return array;
     }
 
     public ArrayList<String> getDatabaseAppsPaketname(){
@@ -119,10 +127,18 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         ArrayList<String> array = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT " + Const.PAKETNAME + " FROM ALLEAPPS", null);
 
-        while (c.moveToNext()){
-            array.add(c.getString(0));
+        try {
+
+            while (c.moveToNext()){
+                array.add(c.getString(0));
+            }
+            return array;
+
+        } finally {
+            if(c != null){
+                c.close();
+            }
         }
-        return array;
     }
 
     public String getAppName(String paketname) {
@@ -131,11 +147,19 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(
                 "SELECT " + Const.NAME + " FROM ALLEAPPS WHERE " + Const.PAKETNAME + " = '" + paketname + "'", null);
 
-        while (c.moveToNext()){
-            s = c.getString(0);
-        }
+        try {
 
-        return s;
+            while (c.moveToNext()){
+                s = c.getString(0);
+            }
+
+            return s;
+
+        } finally {
+            if(c != null){
+                c.close();
+            }
+        }
     }
 
 }

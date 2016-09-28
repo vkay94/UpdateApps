@@ -20,12 +20,12 @@
             android:adjustViewBounds="true"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/conDesc"/>
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="AppName"
             android:textSize="15sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -36,7 +36,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="19.12.2015"
             android:textSize="13sp"
             android:gravity="center"
             android:id="@+id/rec_all_date"/>
@@ -44,7 +43,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0.1 Alpha"
             android:textSize="13sp"
             android:gravity="center"
             android:id="@+id/rec_all_version"

@@ -1,7 +1,5 @@
 package de.vkay.updateapps.Benachrichtigungen;
 
-import android.util.Log;
-
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 

@@ -13,9 +13,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Experimental-16.09.19.apk"
             android:textSize="15sp"
             android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:id="@+id/card_exp_title"
             android:gravity="center_vertical" />
 
@@ -24,7 +25,8 @@
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_download_white"
-            android:id="@+id/card_exp_btn_download"/>
+            android:id="@+id/card_exp_btn_download"
+            android:contentDescription="@string/conDesc"/>
 
     </RelativeLayout>
 
