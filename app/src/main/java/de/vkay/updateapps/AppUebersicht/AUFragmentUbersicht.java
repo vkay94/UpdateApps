@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
 
+import de.vkay.updateapps.BuildConfig;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -137,25 +139,37 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
                 "/UpdateApps/" + bund.getString("name"), bund.getString("name") + " - " + bund.getString("version") + ".apk");
         request.setTitle("Update: " + bund.getString("name") + " - " + bund.getString("version"));
 
+        //final long downloadId = downloadManager.enqueue(request);
         downloadManager.enqueue(request);
 
         if (shared.getAutoInstallStatus()) {
             BroadcastReceiver onComplete = new BroadcastReceiver() {
                 public void onReceive(Context ctxt, Intent intent) {
+
                     String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
                             "/" + bund.getString("name") + " - " + bund.getString("version") + ".apk";
-                    Intent intentO = new Intent(Intent.ACTION_VIEW);
-                    intentO.setDataAndType(Uri.fromFile(new File(fileName)), "application/vnd.android.package-archive");
-                    getActivity().startActivity(intentO);
 
+                    System.out.println(fileName);
+
+                    Uri file = FileProvider.getUriForFile(getActivity(),
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            new File(fileName));
+
+                    Intent install = new Intent(Intent.ACTION_VIEW);
+                    install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    install.setDataAndType(file,
+                            //downloadManager.getMimeTypeForDownloadedFile(downloadId));
+                            "application/vnd.android.package-archive");
+
+                    getActivity().startActivity(install);
                     getActivity().unregisterReceiver(this);
                 }
             };
             getActivity().registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
 
-        //new Snacks().Grey(getActivity().findViewById(android.R.id.content), getActivity(), "Download gestartet", Snacks.SHORT);
-        Snacks.toastInBackground(getActivity(), getString(R.string.download_started), Toast.LENGTH_LONG);
+        Snacks.toastInBackground(getActivity(), getActivity().getString(R.string.download_started), Toast.LENGTH_SHORT);
     }
 
     // Permissions

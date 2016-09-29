@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
+import java.util.StringTokenizer;
 
+import de.vkay.updateapps.BuildConfig;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
@@ -94,7 +97,7 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
 
     public void downloadApk(String url, final String name){
 
-        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        final DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -102,17 +105,30 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
         request.setDestinationInExternalPublicDir("/UpdateApps/" + bund.getString(Const.NAME), name + ".apk");
         request.setTitle("Experimental: " + bund.getString(Const.NAME) + " - " + name);
 
+        //final long downloadId = downloadManager.enqueue(request);
         downloadManager.enqueue(request);
 
         if (shared.getAutoInstallStatus()) {
             BroadcastReceiver onComplete = new BroadcastReceiver() {
                 public void onReceive(Context ctxt, Intent intent) {
+
                     String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
                             "/" + name + ".apk";
-                    Intent intentO = new Intent(Intent.ACTION_VIEW);
-                    intentO.setDataAndType(Uri.fromFile(new File(fileName)), "application/vnd.android.package-archive");
-                    context.startActivity(intentO);
 
+                    System.out.println(fileName);
+
+                    Uri file = FileProvider.getUriForFile(context,
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            new File(fileName));
+
+                    Intent install = new Intent(Intent.ACTION_VIEW);
+                    install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    install.setDataAndType(file,
+                            //downloadManager.getMimeTypeForDownloadedFile(downloadId));
+                            "application/vnd.android.package-archive");
+
+                    context.startActivity(install);
                     context.unregisterReceiver(this);
                 }
             };
