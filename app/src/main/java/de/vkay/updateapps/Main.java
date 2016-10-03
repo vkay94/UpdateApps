@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -34,6 +35,7 @@ import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.User.BenutzerPanel;
+import de.vkay.updateapps.User.Einstellungen;
 import de.vkay.updateapps.User.UserLogin;
 import de.vkay.updateapps.Willkommen.WelcomeScreen;
 import okhttp3.Call;
@@ -259,7 +261,10 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                     e.printStackTrace();
                 }
 
-                new Snacks().Grey(coordinatorLayout_main, getApplicationContext(), getString(R.string.update_database), Snacks.SHORT);
+                Snacks.ShowSnack(getApplicationContext(), coordinatorLayout_main,
+                        getString(R.string.update_database), Snackbar.LENGTH_SHORT,
+                        R.color.greyStatus, 0)
+                        .show();
             }
         });
     }

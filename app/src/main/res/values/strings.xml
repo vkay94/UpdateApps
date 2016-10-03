@@ -69,7 +69,7 @@
     <string name="delete_success">Löschen erfolgreich</string>
     <string name="dialog_delete">Löschen</string>
     <string name="dialog_delete_msg">Willst du den Beitrag wirklich entfernen?</string>
-    <string name="no_wifi_connection"><![CDATA[Keine WiFi-Verbindung (-> Einstellungen)]]></string>
+    <string name="no_wifi_connection">Keine WiFi-Verbindung</string>
     <string name="often">Oft genug geladen</string>
     <string name="app_abonniert">App abonniert</string>
     <string name="app_deabonniert">App deabonniert</string>

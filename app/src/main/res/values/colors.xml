@@ -13,6 +13,7 @@
     <color name="white">#ffffff</color>
     <color name="userRegisterBg">#3e5780</color>
     <color name="userRegisterBgBtn">#5172a7</color>
+    <color name="blueish">#99d977</color>
     <color name="TextInputLayoutTextcolor">#51a758</color>
     <color name="TextInputLayoutColorhint">#979da1</color>
     <color name="downloadbtn_grey">#97a2a7</color>

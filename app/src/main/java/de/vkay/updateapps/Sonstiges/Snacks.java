@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.text.StaticLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -20,43 +22,6 @@ public class Snacks {
     public static final int SHORT = -1;
     public static final int LONG = 0;
 
-    ViewGroup viewGroup;
-    Snackbar snack;
-
-    private static ViewGroup findSuitableParent(View view) {
-        ViewGroup fallback = null;
-        do {
-            if (view instanceof CoordinatorLayout) {
-                return (ViewGroup) view;
-            } else if (view instanceof FrameLayout) {
-                if (view.getId() == android.R.id.content) {
-                    return (ViewGroup) view;
-                } else {
-                    fallback = (ViewGroup) view;
-                }
-            }
-
-            if (view != null) {
-                final ViewParent parent = view.getParent();
-                view = parent instanceof View ? (View) parent : null;
-            }
-        } while (view != null);
-
-        return fallback;
-    }
-
-    public void setupVG(String bg){
-        viewGroup = (ViewGroup) snack.getView();
-        viewGroup.setBackgroundColor(Color.parseColor(bg));
-    }
-
-    public void Grey (View view, Context context, String text, int dauer){
-        snack = Snackbar.make(findSuitableParent(view), text, dauer);
-        setupVG(String.format("#%06X", 0xFFFFFF & ContextCompat.getColor(context, R.color.greyStatus)));
-
-        snack.show();
-    }
-
     public static void toastInBackground(final Context context, final String msg, final int dauer) {
         if (context != null && msg != null) {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -67,5 +32,19 @@ public class Snacks {
                 }
             });
         }
+    }
+
+    public static Snackbar ShowSnack(Context context, View view, String text, int duration, int backgroundColor, int actionColor) {
+        Snackbar snackbar = Snackbar.make(view, text, duration);
+
+        if (backgroundColor != 0) {
+            snackbar.getView().setBackgroundColor(ContextCompat.getColor(context, backgroundColor));
+        }
+
+        if (actionColor != 0) {
+            snackbar.setActionTextColor(ContextCompat.getColor(context, actionColor));
+        }
+
+        return snackbar;
     }
 }

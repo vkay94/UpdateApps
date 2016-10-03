@@ -12,6 +12,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -36,6 +38,7 @@ import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.Sonstiges.Sonst;
+import de.vkay.updateapps.User.Einstellungen;
 
 public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
@@ -54,6 +57,8 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
     int counter = 0;
 
+    CoordinatorLayout coord;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +70,7 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
         bund = getArguments();
         shared = new SharedPrefs(getActivity());
+        coord = (CoordinatorLayout) getActivity().findViewById(R.id.appueber_coord);
 
         TextView tvVersion = (TextView) view.findViewById(R.id.austart_version);
         TextView tvDate = (TextView) view.findViewById(R.id.austart_date);
@@ -94,10 +100,20 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 if (counter < 2) {
                     if (shared.getWifiDownloadStatus() && !Sonst.isWifiConnected(getActivity())) {
-                        Snacks.toastInBackground(getActivity(), getString(R.string.no_wifi_connection), Snacks.LONG);
+
+                        Snacks.ShowSnack(getActivity(), coord, getString(R.string.no_wifi_connection), Snackbar.LENGTH_INDEFINITE,
+                                R.color.greyStatus, R.color.blueish)
+                                .setAction("Einstellungen", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        startActivity(new Intent(getActivity(), Einstellungen.class));
+                                    }
+                                })
+                                .show();
+
                     } else {
                         permission_check_download();
                         counter++;
@@ -148,8 +164,6 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
                     String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
                             "/" + bund.getString("name") + " - " + bund.getString("version") + ".apk";
-
-                    System.out.println(fileName);
 
                     Uri file = FileProvider.getUriForFile(getActivity(),
                             BuildConfig.APPLICATION_ID + ".provider",
