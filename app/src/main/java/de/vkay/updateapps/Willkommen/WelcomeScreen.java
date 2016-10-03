@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -78,7 +79,7 @@ public class WelcomeScreen extends AppCompatActivity {
                     }
                 } else {
                     if (!isOpaque) {
-                        pager.setBackgroundColor(getResources().getColor(R.color.primary_material_light));
+                        pager.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.primary_material_light));
                         isOpaque = true;
                     }
                 }

@@ -76,7 +76,7 @@
     <string name="download_started">Download gestartet</string>
     <string name="permission_denied">Verweigert</string>
     <string name="full_changelog">Kompletter Changelog</string>
-    <string name="ok" translatable="false">Ok</string>
+    <string name="ok" translatable="false">OK</string>
     <string name="installed_experimental"><![CDATA[<b>Installierte Exp.-Version: </b>]]></string>
     <string name="experim_changelog" translatable="false">Experim. Changelog</string>
     <string name="error">Fehler</string>
@@ -98,5 +98,6 @@
     <string name="settings_global_text">Erhalte eine Benachrichtigung, wenn bspw. eine neue App im Sortiment ist</string>
     <string name="setttings_wifionly_header">Nur WLAN</string>
     <string name="settings_wifionly_text">Limitiert den Download der Apps auf eine WLAN-Verbindung</string>
+    <string name="update_this_app">Über diese App</string>
 
 </resources>

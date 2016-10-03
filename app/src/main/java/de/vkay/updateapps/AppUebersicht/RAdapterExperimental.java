@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import de.vkay.updateapps.BuildConfig;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;

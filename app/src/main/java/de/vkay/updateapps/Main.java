@@ -1,12 +1,14 @@
 package de.vkay.updateapps;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,12 +32,12 @@ import java.util.ArrayList;
 import de.vkay.updateapps.AlleApps.AlleApps;
 import de.vkay.updateapps.AlleApps.AlleAppsDatatype;
 import de.vkay.updateapps.AlleApps.RAdapterAA_Main;
+import de.vkay.updateapps.AppUebersicht.AUMain;
 import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.User.BenutzerPanel;
-import de.vkay.updateapps.User.Einstellungen;
 import de.vkay.updateapps.User.UserLogin;
 import de.vkay.updateapps.Willkommen.WelcomeScreen;
 import okhttp3.Call;
@@ -55,6 +57,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     int counter = 0;
 
     NavigationView navigationView;
+    View viewMoreAppCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +67,19 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         initToolbarNavigationView();
         initialize();
 
+        viewMoreAppCard = findViewById(R.id.main_more_apps_card);
+        viewMoreAppCard.setVisibility(View.GONE);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(llm);
 
         ArrayList<AlleAppsDatatype> alleAppsArray = db.getDatabaseAppsRandom5();
+
+        if (!alleAppsArray.isEmpty()) {
+            viewMoreAppCard.setVisibility(View.VISIBLE);
+        }
+
         rvAAA = new RAdapterAA_Main(alleAppsArray, getApplicationContext());
         recyclerView.setAdapter(rvAAA);
         recyclerView.setHasFixedSize(true);
@@ -132,19 +143,22 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
         shared = new SharedPrefs(getApplicationContext());
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navTop = (NavigationView) findViewById(R.id.main_nav_view_top);
+        NavigationView navBottom = (NavigationView) findViewById(R.id.main_nav_view_bottom);
 
         if (shared.getLoggedInStatus()) {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.navmenu_loggedin);
+            navTop.getMenu().clear();
+            navTop.inflateMenu(R.menu.navmenu_loggedin);
         } else {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.navigationview_menuitems);
+            navTop.getMenu().clear();
+            navTop.inflateMenu(R.menu.navigationview_menuitems);
         }
 
-        navigationView.setNavigationItemSelectedListener(this);
+        navTop.setNavigationItemSelectedListener(this);
+        navBottom.setNavigationItemSelectedListener(this);
+        navBottom.setItemTextColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.expVersion)));
 
-        View headerView = navigationView.getHeaderView(0);
+        View headerView = navTop.getHeaderView(0);
         TextView headerVersion = (TextView) headerView.findViewById(R.id.HeaderVersion);
 
         String headerText = shared.getInstalledAppVersion(getResources().getString(R.string.app_package));
@@ -167,19 +181,41 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_alleApps) {
-            startActivity(new Intent(this, AlleApps.class));
+        switch (id) {
 
-        } else if (id == R.id.nav_login) {
-            startActivityForResult(new Intent(this, UserLogin.class), 2);
+            case R.id.nav_alleApps:
+                startActivity(new Intent(this, AlleApps.class));
+                break;
 
-        } else if (id == R.id.nav_cpanel) {
-            startActivityForResult(new Intent(this, BenutzerPanel.class), 3);
+            case R.id.nav_login:
+                startActivityForResult(new Intent(this, UserLogin.class), 2);
+                break;
 
-        } else if (id == R.id.nav_web){
-            Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(Const.WEBSITE));
-            startActivity(i);
+            case R.id.nav_cpanel:
+                startActivityForResult(new Intent(this, BenutzerPanel.class), 3);
+                break;
+
+            case R.id.nav_web:
+                Intent i = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(Const.WEBSITE));
+                startActivity(i);
+                break;
+
+            case R.id.nav_update:
+                AlleAppsDatatype data = db.getSpecificApp(getString(R.string.app_package));
+                Intent intent = new Intent(this, AUMain.class);
+
+                intent.putExtra(Const.PAKETNAME, data.getPaketname());
+                intent.putExtra(Const.NAME, data.getName());
+                intent.putExtra(Const.VERSION, data.getVersion());
+                intent.putExtra(Const.DATE, data.getDate());
+                intent.putExtra(Const.BESCHREIBUNG, data.getBeschreibung());
+                intent.putExtra(Const.CHANGELOG, data.getChangelog());
+
+                startActivity(intent);
+
+                break;
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -252,6 +288,11 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                         @Override
                         public void run() {
                             ArrayList<AlleAppsDatatype> array = db.getDatabaseApps();
+
+                            if (!array.isEmpty()) {
+                                viewMoreAppCard.setVisibility(View.VISIBLE);
+                            }
+
                             rvAAA.addAll(array);
                             rvAAA.notifyDataSetChanged();
                         }
@@ -305,6 +346,11 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                         @Override
                         public void run() {
                             ArrayList<AlleAppsDatatype> array = db.getDatabaseApps();
+
+                            if (!array.isEmpty()) {
+                                viewMoreAppCard.setVisibility(View.VISIBLE);
+                            }
+
                             rvAAA.addAll(array);
                             rvAAA.notifyDataSetChanged();
                         }

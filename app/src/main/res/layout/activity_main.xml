@@ -60,13 +60,32 @@
 
 </android.support.design.widget.CoordinatorLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/navigationview_main"
-        app:menu="@menu/navigationview_menuitems" />
+        <android.support.design.widget.NavigationView
+            android:id="@+id/main_nav_view_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:layout_gravity="start">
+
+            <android.support.design.widget.NavigationView
+                android:id="@+id/main_nav_view_top"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:fitsSystemWindows="true"
+                app:menu="@menu/navigationview_menuitems"
+                app:headerLayout="@layout/navigationview_main">
+
+                <android.support.design.widget.NavigationView
+                    android:id="@+id/main_nav_view_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:fitsSystemWindows="true"
+                    app:menu="@menu/navigationview_menuitems_bottom" />
+
+                </android.support.design.widget.NavigationView>
+
+        </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

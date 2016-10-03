@@ -82,14 +82,16 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         try {
 
             while (c.moveToNext()){
-                array.add(new AlleAppsDatatype(
-                        c.getString(0), // Name
-                        c.getString(1), // Paketname
-                        c.getString(2), // Version
-                        c.getString(3), // Datum
-                        c.getString(4), // Beschreibung
-                        c.getString(5)  // Version
-                ));
+                if (!c.getString(1).matches("de.vkay.updateapps")) {
+                    array.add(new AlleAppsDatatype(
+                            c.getString(0),
+                            c.getString(1),
+                            c.getString(2),
+                            c.getString(3),
+                            c.getString(4),
+                            c.getString(5)
+                    ));
+                }
             }
             return array;
 
@@ -108,14 +110,16 @@ public class DB_AlleApps extends SQLiteOpenHelper {
         try {
 
             while (c.moveToNext()){
-                array.add(new AlleAppsDatatype(
-                        c.getString(0),
-                        c.getString(1),
-                        c.getString(2),
-                        c.getString(3),
-                        c.getString(4),
-                        c.getString(5)
-                ));
+                if (!c.getString(1).matches("de.vkay.updateapps")) {
+                    array.add(new AlleAppsDatatype(
+                            c.getString(0),
+                            c.getString(1),
+                            c.getString(2),
+                            c.getString(3),
+                            c.getString(4),
+                            c.getString(5)
+                    ));
+                }
             }
             return array;
 
@@ -158,6 +162,33 @@ public class DB_AlleApps extends SQLiteOpenHelper {
             }
 
             return s;
+
+        } finally {
+            if(c != null){
+                c.close();
+            }
+        }
+    }
+
+    public AlleAppsDatatype getSpecificApp(String paketname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        AlleAppsDatatype data = new AlleAppsDatatype();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM ALLEAPPS WHERE " + Const.PAKETNAME + " = '" + paketname + "'", null);
+
+        try {
+
+            while (c.moveToNext()){
+
+                data.setName(c.getString(0));
+                data.setPaketname(c.getString(1));
+                data.setVersion(c.getString(2));
+                data.setDate(c.getString(3));
+                data.setBeschreibung(c.getString(4));
+                data.setChangelog(c.getString(5));
+
+            }
+            return data;
 
         } finally {
             if(c != null){

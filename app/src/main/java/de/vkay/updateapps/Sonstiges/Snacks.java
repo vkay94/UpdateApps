@@ -1,21 +1,12 @@
 package de.vkay.updateapps.Sonstiges;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.StrictMode;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.text.StaticLayout;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
 import android.widget.Toast;
-
-import de.vkay.updateapps.R;
 
 public class Snacks {
 

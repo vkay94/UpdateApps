@@ -60,7 +60,6 @@
     <string name="download_started">Download started</string>
     <string name="error">Error</string>
     <string name="error_send">Error while sending</string>
-    <string name="experim_changelog"></string>
     <string name="full_changelog">Cpmplete Changelog</string>
     <string name="installed_experimental"><![CDATA[<b>Installed Exp.-Version: </b>]]></string>
     <string name="login_success">Login successful</string>
@@ -68,11 +67,9 @@
     <string name="no_experim_builds_available">No exp. build available</string>
     <string name="no_wifi_connection">No WiFi connection</string>
     <string name="often">Too often</string>
-    <string name="ok"></string>
     <string name="permission_denied">Denied</string>
     <string name="send_success">Sending successful</string>
     <string name="settings_autoinstall_text">Starts the Package Installer directly after download completion.</string>
-    <string name="settings_autostart_header"></string>
     <string name="settings_global_header">Global Announcements</string>
     <string name="settings_global_text">Recieve a notification when e.g. a new app is available</string>
     <string name="settings_wifionly_text">Limits the downloads to an WLAN connection</string>
