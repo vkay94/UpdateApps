@@ -56,7 +56,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
     int counter = 0;
 
-    NavigationView navigationView;
+    NavigationView navTop, navBottom;
     View viewMoreAppCard;
 
     @Override
@@ -106,8 +106,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
-        db = new DB_AlleApps(this);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,9 +140,10 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
 
         shared = new SharedPrefs(getApplicationContext());
+        db = new DB_AlleApps(this);
 
-        NavigationView navTop = (NavigationView) findViewById(R.id.main_nav_view_top);
-        NavigationView navBottom = (NavigationView) findViewById(R.id.main_nav_view_bottom);
+        navTop = (NavigationView) findViewById(R.id.main_nav_view_top);
+        navBottom = (NavigationView) findViewById(R.id.main_nav_view_bottom);
 
         if (shared.getLoggedInStatus()) {
             navTop.getMenu().clear();
@@ -156,7 +155,8 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
         navTop.setNavigationItemSelectedListener(this);
         navBottom.setNavigationItemSelectedListener(this);
-        navBottom.setItemTextColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.expVersion)));
+
+        checkNavBottomUpdateText();
 
         View headerView = navTop.getHeaderView(0);
         TextView headerVersion = (TextView) headerView.findViewById(R.id.HeaderVersion);
@@ -164,6 +164,16 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         String headerText = shared.getInstalledAppVersion(getResources().getString(R.string.app_package));
         headerVersion.setText(headerText);
 
+    }
+
+    public void checkNavBottomUpdateText() {
+        if (navBottom != null
+                && !db.getSpecificApp(getString(R.string.app_package))
+                .getVersion().equals(shared.getInstalledAppVersion(getString(R.string.app_package)))) {
+
+            navBottom.getMenu().findItem(R.id.nav_update).setTitle(R.string.nav_update_when_available);
+            navBottom.setItemTextColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.expVersion)));
+        }
     }
 
     @Override
@@ -228,13 +238,13 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 2 && shared.getLoggedInStatus()) {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.navmenu_loggedin);
+            navTop.getMenu().clear();
+            navTop.inflateMenu(R.menu.navmenu_loggedin);
         }
 
         if(requestCode == 3 && !shared.getLoggedInStatus()) {
-            navigationView.getMenu().clear();
-            navigationView.inflateMenu(R.menu.navigationview_menuitems);
+            navTop.getMenu().clear();
+            navTop.inflateMenu(R.menu.navigationview_menuitems);
         }
     }
 
@@ -333,7 +343,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                     JSONObject obj = new JSONObject(jsonData).getJSONArray("updateapps").getJSONObject(0);
 
                     String name = obj.getString(Const.NAME);
-                    String paketname = obj.getString(Const.PAKETNAME);
+                    final String paketname = obj.getString(Const.PAKETNAME);
                     String version = obj.getString(Const.VERSION);
                     String date = obj.getString(Const.DATE);
                     String beschreibung = obj.getString(Const.BESCHREIBUNG);
@@ -345,6 +355,11 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+                            if (paketname.equals(getString(R.string.app_package))) {
+                                checkNavBottomUpdateText();
+                            }
+
                             ArrayList<AlleAppsDatatype> array = db.getDatabaseApps();
 
                             if (!array.isEmpty()) {

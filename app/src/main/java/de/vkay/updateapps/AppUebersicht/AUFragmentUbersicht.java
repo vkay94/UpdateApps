@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
+import java.io.IOException;
 
 import de.vkay.updateapps.BuildConfig;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
@@ -39,6 +41,9 @@ import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.Sonstiges.Sonst;
 import de.vkay.updateapps.User.Einstellungen;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
 
@@ -51,12 +56,10 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
     }
 
     Bundle bund;
-    String downloadLink;
+    String downloadLink, currVersion, paket;
 
     SharedPrefs shared;
-
     int counter = 0;
-
     CoordinatorLayout coord;
 
     @Override
@@ -71,6 +74,8 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
         bund = getArguments();
         shared = new SharedPrefs(getActivity());
         coord = (CoordinatorLayout) getActivity().findViewById(R.id.appueber_coord);
+        currVersion = bund.getString(Const.VERSION);
+        paket = bund.getString(Const.PAKETNAME);
 
         TextView tvVersion = (TextView) view.findViewById(R.id.austart_version);
         TextView tvDate = (TextView) view.findViewById(R.id.austart_date);
@@ -195,15 +200,57 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
             }
         } else {
-            downloadApk(downloadLink);
+            checkLatestVersion();
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-            downloadApk(downloadLink);
+            checkLatestVersion();
         } else
             Snacks.toastInBackground(getActivity(), getString(R.string.permission_denied), Toast.LENGTH_SHORT);
+    }
+
+    public void checkLatestVersion() {
+
+        final boolean[] isNewest = {false};
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                OkHttpClient client = new OkHttpClient();
+
+                final Request request = new Request.Builder()
+                        .url(Const.BASE_PHP + Const.GETAPPS + "?getVersionOf=" + paket)
+                        .build();
+
+                try {
+                    Response response = client.newCall(request).execute();
+
+                    if (response.body().string().equals(currVersion)) {
+                        isNewest[0] = true;
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aBoolean) {
+                super.onPostExecute(aBoolean);
+
+                if (isNewest[0]) {
+                    downloadApk(downloadLink);
+                } else {
+                    Snacks.toastInBackground(getActivity(), "Nicht aktuellste", Toast.LENGTH_SHORT);
+                }
+            }
+        }
+        .execute();
     }
 }

@@ -80,4 +80,6 @@
     <string name="user_panel_name_vergeben">Name is already assigned</string>
     <string name="userlogin_passname_falsch">User or Pass wrong</string>
     <string name="userregister_username_vergeben">User name is already assigned</string>
+    <string name="nav_update_when_available">Update</string>
+    <string name="update_this_app">About this app</string>
 </resources>

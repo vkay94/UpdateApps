@@ -99,5 +99,6 @@
     <string name="setttings_wifionly_header">Nur WLAN</string>
     <string name="settings_wifionly_text">Limitiert den Download der Apps auf eine WLAN-Verbindung</string>
     <string name="update_this_app">Über diese App</string>
+    <string name="nav_update_when_available">Aktualisierung</string>
 
 </resources>
