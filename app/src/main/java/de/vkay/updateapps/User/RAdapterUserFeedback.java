@@ -130,10 +130,10 @@ public class RAdapterUserFeedback extends RecyclerView.Adapter<RAdapterUserFeedb
 
     public void showDeleteDialog(final int position) {
         AlertDialog.Builder explDialog = new AlertDialog.Builder(context, R.style.MyDialogTheme);
-        explDialog.setTitle(R.string.dialog_delete)
+        explDialog.setTitle(R.string.delete)
                 .setMessage(R.string.dialog_delete_msg);
 
-        explDialog.setPositiveButton(R.string.dialog_delete, new DialogInterface.OnClickListener() {
+        explDialog.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 deleteEntry(array.get(position).date);
@@ -142,7 +142,7 @@ public class RAdapterUserFeedback extends RecyclerView.Adapter<RAdapterUserFeedb
                 dialog.dismiss();
             }
         });
-        explDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+        explDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

@@ -1,14 +1,15 @@
 package de.vkay.updateapps.AppUebersicht;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -41,6 +42,8 @@ import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.Sonstiges.Sonst;
 import de.vkay.updateapps.User.Einstellungen;
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -213,44 +216,48 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
     }
 
     public void checkLatestVersion() {
+        OkHttpClient client = new OkHttpClient();
 
-        final boolean[] isNewest = {false};
+        Request request = new Request.Builder()
+                .url(Const.BASE_PHP + Const.GETAPPS + "?getVersionOf=" + paket)
+                .build();
 
-        new AsyncTask<Void, Void, Void>() {
+        client.newCall(request).enqueue(new Callback() {
             @Override
-            protected Void doInBackground(Void... params) {
+            public void onFailure(Call call, IOException e) {
 
-                OkHttpClient client = new OkHttpClient();
-
-                final Request request = new Request.Builder()
-                        .url(Const.BASE_PHP + Const.GETAPPS + "?getVersionOf=" + paket)
-                        .build();
-
-                try {
-                    Response response = client.newCall(request).execute();
-
-                    if (response.body().string().equals(currVersion)) {
-                        isNewest[0] = true;
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return null;
             }
 
             @Override
-            protected void onPostExecute(Void aBoolean) {
-                super.onPostExecute(aBoolean);
-
-                if (isNewest[0]) {
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.body().string().equals(currVersion)) {
                     downloadApk(downloadLink);
                 } else {
-                    Snacks.toastInBackground(getActivity(), "Nicht aktuellste", Toast.LENGTH_SHORT);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
+                                    .setTitle(R.string.not_latest_version_header)
+                                    .setMessage(getString(R.string.not_latest_version_text))
+                                    .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            getActivity().finish();
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alert.show();
+                        }
+                    });
+
                 }
             }
-        }
-        .execute();
+        });
     }
 }

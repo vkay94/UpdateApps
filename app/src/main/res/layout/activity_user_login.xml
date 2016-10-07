@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user_login_header"
+        android:text="@string/login"
         android:gravity="center_horizontal"
         android:textSize="30sp"
         android:textStyle="bold"

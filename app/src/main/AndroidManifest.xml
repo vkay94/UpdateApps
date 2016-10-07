@@ -46,7 +46,7 @@
             android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".User.UserLogin"
-            android:label="@string/title_activity_user_login"
+            android:label="@string/login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
@@ -55,7 +55,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".User.Einstellungen"
-            android:label="@string/title_activity_cpanel"
+            android:label="@string/settings"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeSettings" />
         <activity

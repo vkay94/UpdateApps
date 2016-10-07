@@ -128,7 +128,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 finish();
             }
         });
-        explDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+        explDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();

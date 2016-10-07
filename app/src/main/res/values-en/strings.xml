@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="experimental">The following versions are previous or experimental builds which contain feature in early stage so they can be tested. You won\'t be notified about new experimental builds.</string>
+    <string name="experimental">The following versions are previous or experimental builds which contain features in early stage so they can be tested. You won\'t be notified about new experimental builds.</string>
     <string name="nav_allapps">All Apps</string>
     <string name="nav_menu_general">General</string>
     <string name="nav_web">Website</string>
@@ -9,14 +9,12 @@
     <string name="screen2_desc">Download new apps.</string>
     <string name="screen2_title">Keep up to date!</string>
     <string name="screen_setdetails_desc">Log in for writing feedback and non-missing an app.</string>
-    <string name="title_activity_alle_apps">All apps</string>
-    <string name="title_activity_cpanel">Settings</string>
+    <string name="title_activity_alle_apps">All Apps</string>
     <string name="title_activity_feedback">Write feedback</string>
-    <string name="title_activity_user_feedback">Own contribution</string>
-    <string name="title_activity_user_login">Login</string>
+    <string name="title_activity_user_feedback">Own contributions</string>
     <string name="info">Info</string>
     <string name="au_versionen_oldexp">Older and exp. versions</string>
-    <string name="change">Change</string>
+    <string name="change">edit</string>
     <string name="changelog">Changelog</string>
     <string name="description">Description</string>
     <string name="download">Download</string>
@@ -34,7 +32,6 @@
     <string name="nav_user_panel">User panel</string>
     <string name="register">Register</string>
     <string name="settings">Settings</string>
-    <string name="user_login_header">Login</string>
     <string name="user_panel_anpassungen">Adjustments</string>
     <string name="user_panel_meine_beitr">My feedback</string>
     <string name="user_panel_newname">New name</string>
@@ -52,19 +49,19 @@
     <string name="delete_error">Error while deletion</string>
     <string name="delete_success">Deletion successful</string>
     <string name="dialog_back">Back</string>
-    <string name="dialog_cancel">Cancel</string>
-    <string name="dialog_delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
     <string name="dialog_delete_msg">Do you really want to delete this post?</string>
     <string name="dialog_remove_feedback">Do you really want to discard your post?</string>
     <string name="dialog_verwerfen">Discard</string>
     <string name="download_started">Download started</string>
     <string name="error">Error</string>
     <string name="error_send">Error while sending</string>
-    <string name="full_changelog">Cpmplete Changelog</string>
+    <string name="full_changelog">Complete Changelog</string>
     <string name="installed_experimental"><![CDATA[<b>Installed Exp.-Version: </b>]]></string>
     <string name="login_success">Login successful</string>
     <string name="network">Network</string>
-    <string name="no_experim_builds_available">No exp. build available</string>
+    <string name="no_experim_builds_available">No exp. build available.</string>
     <string name="no_wifi_connection">No WiFi connection</string>
     <string name="often">Too often</string>
     <string name="permission_denied">Denied</string>
@@ -72,7 +69,7 @@
     <string name="settings_autoinstall_text">Starts the Package Installer directly after download completion.</string>
     <string name="settings_global_header">Global Announcements</string>
     <string name="settings_global_text">Recieve a notification when e.g. a new app is available</string>
-    <string name="settings_wifionly_text">Limits the downloads to an WLAN connection</string>
+    <string name="settings_wifionly_text">Limits the download to WLAN connection</string>
     <string name="setttings_wifionly_header">WLAN only</string>
     <string name="success">Success</string>
     <string name="title_benutzer">User panel</string>
@@ -82,4 +79,7 @@
     <string name="userregister_username_vergeben">User name is already assigned</string>
     <string name="nav_update_when_available">Update</string>
     <string name="update_this_app">About this app</string>
+    <string name="not_latest_version_header">Not latest version</string>
+    <string name="not_latest_version_text">The local DB version of this app is not up to date. The download would be bad. Please go back to the homescreen and update the database by taping the search button.</string>
+    <string name="update">Update</string>
 </resources>
