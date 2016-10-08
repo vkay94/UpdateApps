@@ -68,6 +68,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:layout_behavior="de.vkay.updateapps.Sonstiges.ScrollAwareFABBehavior"
-        android:src="@drawable/pen" />
+        app:srcCompat="@drawable/ic_pen" />
 
 </android.support.design.widget.CoordinatorLayout>

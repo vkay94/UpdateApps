@@ -36,7 +36,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setAutoCancel(true)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setSmallIcon(R.drawable.update)
+                .setSmallIcon(R.drawable.ic_update_notification)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                 .setContentIntent(pendingIntent);
 

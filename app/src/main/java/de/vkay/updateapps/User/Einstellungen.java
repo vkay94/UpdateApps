@@ -27,10 +27,10 @@ import java.util.List;
 import de.vkay.updateapps.R;
 
 /**
- * A {@link PreferenceActivity} that presents a set of application settings. On
- * handset devices, settings are presented as a single list. On tablets,
- * settings are split by category, with category headers shown to the left of
- * the list of settings.
+ * A {@link PreferenceActivity} that presents a set of application ic_settings_24dp. On
+ * handset devices, ic_settings_24dp are presented as a single list. On tablets,
+ * ic_settings_24dp are split by category, with category headers shown to the left of
+ * the list of ic_settings_24dp.
  * <p>
  * See <a href="http://developer.android.com/design/patterns/settings.html">
  * Android Design: Settings</a> for design guidelines and the <a
@@ -188,7 +188,7 @@ public class Einstellungen extends AppCompatPreferenceActivity {
 
     /**
      * This fragment shows general preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
+     * activity is showing a two-pane ic_settings_24dp UI.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class GeneralPreferenceFragment extends PreferenceFragment {

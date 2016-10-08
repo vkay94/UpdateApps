@@ -68,7 +68,7 @@
     <string name="send_success">Sending successful</string>
     <string name="settings_autoinstall_text">Starts the Package Installer directly after download completion.</string>
     <string name="settings_global_header">Global Announcements</string>
-    <string name="settings_global_text">Recieve a notification when e.g. a new app is available</string>
+    <string name="settings_global_text">Receive a notification when e.g. a new app is available</string>
     <string name="settings_wifionly_text">Limits the download to WLAN connection</string>
     <string name="setttings_wifionly_header">WLAN only</string>
     <string name="success">Success</string>
@@ -82,4 +82,5 @@
     <string name="not_latest_version_header">Not latest version</string>
     <string name="not_latest_version_text">The local DB version of this app is not up to date. The download would be bad. Please go back to the homescreen and update the database by taping the search button.</string>
     <string name="update">Update</string>
+    <string name="installed">"Installed: "</string>
 </resources>

@@ -44,7 +44,7 @@
         <android.support.v7.widget.SwitchCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Erhalte Benachrichtigungen"
+            android:text="@string/get_notification"
             android:theme="@style/Color1SwitchStyle"
             android:layout_marginTop="10dp"
             android:id="@+id/bsheet_switch_notiification"/>
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/buttonBG"
-            android:text="Details"
+            android:text="@string/details"
             android:id="@+id/bsheet_btn_details"
             android:visibility="gone"
             android:layout_marginTop="15dp"/>

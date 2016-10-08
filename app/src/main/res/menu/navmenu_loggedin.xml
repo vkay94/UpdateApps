@@ -5,7 +5,7 @@
         <menu>
             <item
                 android:id="@+id/nav_cpanel"
-                android:icon="@drawable/logout"
+                android:icon="@drawable/ic_logout"
                 android:title="@string/nav_user_panel" />
             <item
                 android:id="@+id/nav_alleApps"

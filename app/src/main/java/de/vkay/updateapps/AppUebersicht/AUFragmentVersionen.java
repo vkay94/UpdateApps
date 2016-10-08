@@ -171,12 +171,12 @@ public class AUFragmentVersionen extends Fragment{
                             if (!isExpanded) {
                                 tvChangelogExpanded.setVisibility(View.VISIBLE);
                                 tvChangelog.setVisibility(View.GONE);
-                                imageExpand.setImageDrawable(getActivity().getDrawable(R.drawable.arrow_up));
+                                imageExpand.setImageDrawable(getActivity().getDrawable(R.drawable.ic_chevron_up));
                                 isExpanded = true;
                             } else if (isExpanded) {
                                 tvChangelog.setVisibility(View.VISIBLE);
                                 tvChangelogExpanded.setVisibility(View.GONE);
-                                imageExpand.setImageDrawable(getActivity().getDrawable(R.drawable.arrow_down));
+                                imageExpand.setImageDrawable(getActivity().getDrawable(R.drawable.ic_chevron_down));
                                 isExpanded = false;
                             }
                         }

@@ -168,7 +168,7 @@
                     android:layout_width="0dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_action_next"
+                    app:srcCompat="@drawable/ic_chevron_right"
                     android:layout_weight="1"
                     android:clickable="false"
                     android:contentDescription="@string/conDesc"/>
@@ -200,7 +200,7 @@
                     android:layout_width="0dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_action_next"
+                    android:src="@drawable/ic_chevron_right"
                     android:layout_weight="1"
                     android:clickable="false"
                     android:contentDescription="@string/conDesc"/>
