@@ -25,12 +25,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
 import java.io.IOException;
@@ -132,21 +129,11 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
             }
         });
 
-        CheckBox checkBoxNotify = (CheckBox) view.findViewById(R.id.austart_checkbox_notify);
-        checkBoxNotify.setChecked(shared.getAppStatus(bund.getString(Const.PAKETNAME)));
-        checkBoxNotify.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ImageView imageSettingsBS = (ImageView) view.findViewById(R.id.austart_imageSettings);
+        imageSettingsBS.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (compoundButton.isChecked()) {
-                    shared.saveApp(bund.getString(Const.PAKETNAME));
-                    FirebaseMessaging.getInstance().subscribeToTopic(bund.getString(Const.PAKETNAME));
-                    Snacks.toastInBackground(getActivity(), getString(R.string.app_abonniert), Toast.LENGTH_SHORT);
-                } else
-                if (!compoundButton.isChecked()) {
-                    shared.removeApp(bund.getString(Const.PAKETNAME));
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(bund.getString(Const.PAKETNAME));
-                    Snacks.toastInBackground(getActivity(), getString(R.string.app_deabonniert), Toast.LENGTH_SHORT);
-                }
+            public void onClick(View v) {
+                BottomSheetSettings.newInstance(bund).show(getActivity().getSupportFragmentManager(), "TAG");
             }
         });
 

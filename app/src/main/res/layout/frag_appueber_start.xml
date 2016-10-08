@@ -69,7 +69,7 @@
                         android:layout_alignParentEnd="true"
                         android:id="@+id/austart_btn_download"/>
 
-                    <CheckBox
+                    CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
@@ -77,6 +77,16 @@
                         android:id="@+id/austart_checkbox_notify"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/settings"
+                        android:padding="2dp"
+                        android:id="@+id/austart_imageSettings"
+                        />
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>

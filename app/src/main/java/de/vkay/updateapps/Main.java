@@ -169,7 +169,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
     public void checkNavBottomUpdateText() {
         if (navBottom != null
                 && !db.getSpecificApp(getString(R.string.app_package))
-                .getVersion().equals(shared.getInstalledAppVersion(getString(R.string.app_package)))) {
+                .getVersion().equals(shared.getInstalledAppVersion(getApplicationContext().getString(R.string.app_package)))) {
 
             navBottom.getMenu().findItem(R.id.nav_update).setTitle(R.string.nav_update_when_available);
             navBottom.setItemTextColor(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.expVersion)));

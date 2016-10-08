@@ -3,6 +3,7 @@
 
     <color name="userLoginBgBtn">#6f8a93</color>
     <color name="cardViewBGUpdate">#506876</color>
+    <color name="bottomSheetColor">#2e3d45</color>
     <color name="userLoginBg">#4c5b69</color>
     <color name="grey">#3a4b54</color>
     <color name="buttonBG">#404f58</color>
@@ -11,6 +12,8 @@
     <color name="cardViewBGDarK">#2b3a43</color>
     <color name="windowBG">#1F292F</color>
     <color name="white">#ffffff</color>
+    <color name="someGrey">#9f9f9f</color>
+    <color name="someGreyDarker">#565656</color>
     <color name="userRegisterBg">#3e5780</color>
     <color name="userRegisterBgBtn">#5172a7</color>
     <color name="blueish">#99d977</color>

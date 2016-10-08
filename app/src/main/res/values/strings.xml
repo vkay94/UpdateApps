@@ -104,4 +104,15 @@
     <string name="not_latest_version_header">Nicht aktuellste Version</string>
     <string name="not_latest_version_text">Die lokale DB-Version dieser App ist nicht auf dem neuesten Stand. Der Download würde nicht funktionieren.\n\nBitte aktualisiere die Datenbank im Homescreen mit dem Such-Button.</string>
 
+    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et pulvinar augue, ac vehicula leo. Integer ac felis sem. Ut lobortis ex quis nibh ultrices, vel posuere tellus finibus. Maecenas in velit non lacus feugiat pretium. Sed sed mi eu augue gravida imperdiet vel eget nibh. Etiam urna enim, interdum vel erat in, mollis tincidunt neque. Nunc mauris turpis, pretium eget iaculis in, posuere quis nisl. Aenean porttitor justo augue, at commodo velit pellentesque vel. Nam bibendum dui quis blandit lobortis.
+
+Donec feugiat rutrum sodales. Nulla efficitur, augue vitae pellentesque egestas, dolor lacus aliquam risus, bibendum porta libero mi quis lacus. Quisque lacinia lectus in tempus condimentum. Curabitur vulputate sagittis nisi quis placerat. Fusce facilisis felis ac lorem consectetur, vel pellentesque dui imperdiet. Nunc efficitur pellentesque diam, eget semper quam mattis non. Sed leo enim, euismod eu purus et, consectetur mollis velit. Integer eleifend nec felis vel placerat. Etiam facilisis varius dolor in venenatis. Suspendisse cursus, massa in malesuada egestas, nulla est condimentum tellus, id luctus ex augue quis ex.
+
+Etiam et elementum nisl, eget congue elit. Mauris laoreet ornare tellus, id luctus enim ultricies vel. Phasellus aliquet tristique lorem non fermentum. Duis tempor non massa a feugiat. Mauris sit amet diam sodales, facilisis diam egestas, sodales velit. Integer porttitor suscipit felis, eu vestibulum enim scelerisque et. Nam ac erat efficitur, mattis tellus vitae, eleifend nisi. Nullam volutpat blandit tristique. Aliquam erat volutpat. Donec justo turpis, semper nec posuere non, accumsan a quam. Etiam ac nisl nec ligula venenatis ultricies eu quis libero.
+
+Nunc facilisis magna ac velit pretium tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam porttitor justo sapien, sed consequat libero dictum ut. Curabitur eget pharetra nisl, ac ultrices velit. Phasellus eget arcu a metus semper fringilla egestas sit amet sapien. Nulla tincidunt nulla congue, lobortis leo in, tristique mauris. Donec lobortis elementum gravida. In varius accumsan est, et pellentesque est finibus quis.
+
+Etiam elementum blandit mattis. Nam sit amet felis a felis mollis dictum. Praesent ac sodales nisi, at viverra ipsum. Nunc molestie volutpat diam nec tincidunt. Quisque lobortis felis nec eros tristique, non imperdiet mi dictum. Nullam orci ex, imperdiet a euismod eu, malesuada eu orci. Proin dolor odio, sollicitudin laoreet feugiat ac, molestie in arcu. Duis vitae congue magna. Aenean at ultrices erat. Donec elementum semper varius. Donec et justo gravida, accumsan eros at, dapibus enim.</string>
+    <string name="installed">Installiert:</string>
+
 </resources>

@@ -173,6 +173,14 @@ public class DB_AlleApps extends SQLiteOpenHelper {
     public AlleAppsDatatype getSpecificApp(String paketname){
         SQLiteDatabase db = this.getWritableDatabase();
         AlleAppsDatatype data = new AlleAppsDatatype();
+
+        data.setName("");
+        data.setPaketname("");
+        data.setVersion("");
+        data.setDate("");
+        data.setBeschreibung("");
+        data.setChangelog("");
+
         Cursor c = db.rawQuery(
                 "SELECT * FROM ALLEAPPS WHERE " + Const.PAKETNAME + " = '" + paketname + "'", null);
 
