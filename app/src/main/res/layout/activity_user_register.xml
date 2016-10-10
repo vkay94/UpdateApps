@@ -29,6 +29,7 @@
         <TextView
             android:layout_width="120dp"
             android:textSize="18sp"
+            android:text="@string/username"
             android:gravity="center_vertical"
             android:id="@+id/user_tv_username"
             android:layout_height="40dp"

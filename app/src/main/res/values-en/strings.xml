@@ -83,4 +83,6 @@
     <string name="not_latest_version_text">The local DB version of this app is not up to date. The download would be bad. Please go back to the homescreen and update the database by taping the search button.</string>
     <string name="update">Update</string>
     <string name="installed">"Installed: "</string>
+    <string name="get_notification">Receive notifications</string>
+    <string name="username">"Username: "</string>
 </resources>

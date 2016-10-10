@@ -105,6 +105,7 @@
     <string name="not_latest_version_text">Die lokale DB-Version dieser App ist nicht auf dem neuesten Stand. Der Download würde nicht funktionieren.\n\nBitte aktualisiere die Datenbank im Homescreen mit dem Such-Button.</string>
     <string name="installed">Installiert:</string>
     <string name="get_notification">Erhalte Benachrichtigungen</string>
-    <string name="details">Details</string>
+    <string name="details" translatable="false">Details</string>
+    <string name="username">Benutzer:</string>
 
 </resources>
