@@ -2,7 +2,6 @@ package de.vkay.updateapps;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -37,6 +36,7 @@ import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
+import de.vkay.updateapps.Sonstiges.Sonst;
 import de.vkay.updateapps.User.BenutzerPanel;
 import de.vkay.updateapps.User.UserLogin;
 import de.vkay.updateapps.Willkommen.WelcomeScreen;
@@ -206,9 +206,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
 
             case R.id.nav_web:
-                Intent i = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(Const.WEBSITE));
-                startActivity(i);
+                Sonst.openInChromeCustomTab(this, Const.WEBSITE);
                 break;
 
             case R.id.nav_update:

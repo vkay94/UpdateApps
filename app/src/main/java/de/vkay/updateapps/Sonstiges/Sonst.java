@@ -1,17 +1,20 @@
 package de.vkay.updateapps.Sonstiges;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.design.widget.TextInputLayout;
-import android.widget.TextView;
+import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 
-import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
+
+import de.vkay.updateapps.R;
 
 public class Sonst {
 
@@ -64,33 +67,6 @@ public class Sonst {
         return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date().getTime());
     }
 
-    // User Apps
-
-    public static ArrayList<String> getWords(String string) {
-        String[] list = string.split("\\s+");
-        ArrayList<String> array = new ArrayList<>();
-
-        Collections.addAll(array, list);
-
-        return array;
-    }
-
-    public static String appendNewApp(String old, String string) {
-        return old + " " + string;
-    }
-
-    public static String removeApp(String apps, String zuEntfernen) {
-        ArrayList<String> list = getWords(apps);
-        if (list.contains(zuEntfernen)) {
-            list.remove(list.indexOf(zuEntfernen));
-        }
-        String s = "";
-        for (int i = 0; i < list.size(); i++) {
-            s += list.get(i) + " ";
-        }
-        return s;
-    }
-
     public static String splitGetFirst (String seperator, String string) {
         return string.split(seperator, 2)[0];
     }
@@ -99,24 +75,43 @@ public class Sonst {
         return string.split(seperator, 2)[1];
     }
 
-    // Ändert die ErrorFarbe von TextInputLayout
-    public static void setErrorTextColor(TextInputLayout textInputLayout, int color) {
-        try {
-            Field fErrorView = TextInputLayout.class.getDeclaredField("mErrorView");
-            fErrorView.setAccessible(true);
-            TextView mErrorView = (TextView) fErrorView.get(textInputLayout);
-            Field fCurTextColor = TextView.class.getDeclaredField("mCurTextColor");
-            fCurTextColor.setAccessible(true);
-            fCurTextColor.set(mErrorView, color);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static boolean isWifiConnected(Context context) {
         ConnectivityManager cm =  (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
+    }
+
+    public static void openInChromeCustomTab(Context context, String url) {
+        Uri link;
+        if (!url.contains("http://") && !url.contains("http://")) {
+            link = Uri.parse("http://" + url);
+        } else {
+            link = Uri.parse(url);
+        }
+
+        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder()
+                .setToolbarColor(ContextCompat.getColor(context, R.color.userRegisterBg))
+                .setShowTitle(true)
+                .setStartAnimations(context, R.anim.slide_in_right, R.anim.slide_out_left)
+                .setExitAnimations(context, android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                .setCloseButtonIcon(BitmapFactory.decodeResource(
+                        context.getResources(), R.drawable.ic_arrow_left));
+
+        if (chromeInstalled(context)) {
+            builder.build().intent.setPackage("com.android.chrome");
+        }
+
+        builder.build().launchUrl((Activity) context, link);
+    }
+
+    public static boolean chromeInstalled(Context context) {
+        try {
+            context.getPackageManager().getPackageInfo("com.android.chrome", 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }
