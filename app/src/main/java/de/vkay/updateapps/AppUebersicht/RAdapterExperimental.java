@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
@@ -108,30 +109,45 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
         downloadManager.enqueue(request);
 
         if (shared.getAutoInstallStatus()) {
-            BroadcastReceiver onComplete = new BroadcastReceiver() {
-                public void onReceive(Context ctxt, Intent intent) {
 
-                    String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
-                            "/" + name + ".apk";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                BroadcastReceiver onComplete = new BroadcastReceiver() {
+                    public void onReceive(Context ctxt, Intent intent) {
 
-                    System.out.println(fileName);
+                        String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
+                                "/" + name + ".apk";
 
-                    Uri file = FileProvider.getUriForFile(context,
-                            BuildConfig.APPLICATION_ID + ".provider",
-                            new File(fileName));
+                        Uri file = FileProvider.getUriForFile(context,
+                                BuildConfig.APPLICATION_ID + ".provider",
+                                new File(fileName));
 
-                    Intent install = new Intent(Intent.ACTION_VIEW);
-                    install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    install.setDataAndType(file,
-                            //downloadManager.getMimeTypeForDownloadedFile(downloadId));
-                            "application/vnd.android.package-archive");
+                        Intent install = new Intent(Intent.ACTION_VIEW);
+                        install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        install.setDataAndType(file,
+                                //downloadManager.getMimeTypeForDownloadedFile(downloadId));
+                                "application/vnd.android.package-archive");
 
-                    context.startActivity(install);
-                    context.unregisterReceiver(this);
-                }
-            };
-            context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+                        context.startActivity(install);
+                        context.unregisterReceiver(this);
+                    }
+                };
+                context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            } else {
+                BroadcastReceiver onComplete = new BroadcastReceiver() {
+                    public void onReceive(Context ctxt, Intent intent) {
+                        String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
+                                "/" + name + ".apk";
+
+                        Intent intentO = new Intent(Intent.ACTION_VIEW);
+                        intentO.setDataAndType(Uri.fromFile(new File(fileName)), "application/vnd.android.package-archive");
+                        context.startActivity(intentO);
+
+                        context.unregisterReceiver(this);
+                    }
+                };
+                context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            }
         }
 
         Snacks.toastInBackground(context, context.getString(R.string.download_started), Toast.LENGTH_SHORT);

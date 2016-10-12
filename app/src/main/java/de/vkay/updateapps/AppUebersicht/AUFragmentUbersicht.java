@@ -154,28 +154,44 @@ public class AUFragmentUbersicht extends android.support.v4.app.Fragment {
         downloadManager.enqueue(request);
 
         if (shared.getAutoInstallStatus()) {
-            BroadcastReceiver onComplete = new BroadcastReceiver() {
-                public void onReceive(Context ctxt, Intent intent) {
 
-                    String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
-                            "/" + bund.getString("name") + " - " + bund.getString("version") + ".apk";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                BroadcastReceiver onComplete = new BroadcastReceiver() {
+                    public void onReceive(Context ctxt, Intent intent) {
 
-                    Uri file = FileProvider.getUriForFile(getActivity(),
-                            BuildConfig.APPLICATION_ID + ".provider",
-                            new File(fileName));
+                        String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
+                                "/" + bund.getString("name") + " - " + bund.getString("version") + ".apk";
 
-                    Intent install = new Intent(Intent.ACTION_VIEW);
-                    install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    install.setDataAndType(file,
-                            //downloadManager.getMimeTypeForDownloadedFile(downloadId));
-                            "application/vnd.android.package-archive");
+                        Uri file = FileProvider.getUriForFile(getActivity(),
+                                BuildConfig.APPLICATION_ID + ".provider",
+                                new File(fileName));
 
-                    getActivity().startActivity(install);
-                    getActivity().unregisterReceiver(this);
-                }
-            };
-            getActivity().registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+                        Intent install = new Intent(Intent.ACTION_VIEW);
+                        install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        install.setDataAndType(file,
+                                //downloadManager.getMimeTypeForDownloadedFile(downloadId));
+                                "application/vnd.android.package-archive");
+
+                        getActivity().startActivity(install);
+                        getActivity().unregisterReceiver(this);
+                    }
+                };
+                getActivity().registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            } else {
+                BroadcastReceiver onComplete = new BroadcastReceiver() {
+                    public void onReceive(Context ctxt, Intent intent) {
+                        String fileName = Environment.getExternalStorageDirectory() + "/UpdateApps/" + bund.getString("name") +
+                                "/" + bund.getString("name") + " - " + bund.getString("version") + ".apk";
+                        Intent intentO = new Intent(Intent.ACTION_VIEW);
+                        intentO.setDataAndType(Uri.fromFile(new File(fileName)), "application/vnd.android.package-archive");
+                        getActivity().startActivity(intentO);
+
+                        getActivity().unregisterReceiver(this);
+                    }
+                };
+                getActivity().registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            }
         }
 
         Snacks.toastInBackground(getActivity(), getActivity().getString(R.string.download_started), Toast.LENGTH_SHORT);

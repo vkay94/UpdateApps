@@ -61,7 +61,7 @@ public class DB_AlleApps extends SQLiteOpenHelper {
 
         try {
             while (c1.moveToNext()) {
-                return c1.getString(1).equals(version);
+                return c1.getString(2).equals(version);
             }
 
         } finally {
