@@ -1,4 +1,4 @@
-package de.vkay.updateapps.AppUebersicht.Feedback;
+package de.vkay.updateapps.AppUebersicht;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,7 +21,7 @@ import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
-import de.vkay.updateapps.Sonstiges.Sonst;
+import de.vkay.updateapps.Sonstiges.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -55,8 +55,6 @@ public class FeedbackActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-        // Code
 
         bund = getIntent().getExtras();
         shared = new SharedPrefs(getApplicationContext());
@@ -147,7 +145,7 @@ public class FeedbackActivity extends AppCompatActivity {
                 .add(Const.FEED_BETREFF, betreff)
                 .add(Const.FEED_AUTOR, name)
                 .add(Const.FEED_TEXT, mess)
-                .add(Const.FEED_TIME, Sonst.getCurrentTimeStamp())
+                .add(Const.FEED_TIME, Utils.getCurrentTimeStamp())
                 .build();
 
         Request request = new Request.Builder()

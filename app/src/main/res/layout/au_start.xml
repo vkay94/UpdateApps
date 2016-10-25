@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
+    android:layout_height="wrap_content">
+
+    <!-- CardView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/cardViewBGDarK"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="3dp"
+            app:contentPadding="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="120dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/au_imageIcon"
+                    android:contentDescription="@string/conDesc"
+                    android:transitionName="image"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_toEndOf="@id/au_imageIcon"
+                    android:layout_toStartOf="@+id/au_imageSettings"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:textStyle="bold"
+                    android:id="@+id/au_version" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/au_version"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/au_date"
+                    android:layout_toEndOf="@id/au_imageIcon"
+                    android:layout_toStartOf="@+id/au_imageSettings"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/au_date"
+                    android:text="@string/download"
+                    style="@style/ButtonMaterialDarkBlue"
+                    android:layout_toEndOf="@id/au_imageIcon"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/au_btn_download"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:id="@+id/au_imageSettings"
+                    android:contentDescription="@string/conDesc"
+                    app:srcCompat="@drawable/ic_settings_24dp"
+                    android:tint="@color/white"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <!-- Icon Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:background="@color/test"
+        android:animateLayoutChanges="true"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:id="@+id/au_ll_screenshots">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/conDesc"
+                app:srcCompat="@drawable/ic_folder_images" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/screenshots"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:id="@+id/au_ll_feedback">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/conDesc"
+                app:srcCompat="@drawable/ic_feedback"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Beschreibung -->
+    <TextView
+        android:padding="@dimen/activity_horizontal_margin"
+        android:id="@+id/au_beschreibung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:lineSpacingMultiplier="1.2"/>
+
+    <!--
+    Changelog und Version
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/test"
+        android:animateLayoutChanges="true"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:id="@+id/au_rl_changelog_and_icon">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/au_changelog_header"
+                android:text="@string/changelog"
+                android:textColor="@color/testtextchangelog"/>
+
+            <ImageView
+                android:id="@+id/au_image_changelog_expand"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="5dp"
+                app:srcCompat="@drawable/ic_chevron_down"
+                android:tint="@color/testtextchangelog"
+                android:visibility="gone"
+                android:contentDescription="@string/conDesc"
+                android:layout_toEndOf="@+id/au_changelog_header" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/au_tv_changelog"
+            android:ellipsize="end"
+            android:lineSpacingMultiplier="1.1"
+            android:maxLines="7"
+            android:textColor="@color/testtextchangelog"
+            android:animateLayoutChanges="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/au_tv_changelog_expanded"
+            android:lineSpacingMultiplier="1.1"
+            android:textColor="@color/testtextchangelog"
+            android:animateLayoutChanges="true"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/complete_changelog"
+            android:background="@android:color/transparent"
+            android:textColor="@color/testchangelogbtn"
+            android:id="@+id/au_btn_show_full_changelog"/>
+
+        <!-- Versionen -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/test"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:id="@+id/au_ll_experimental"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:text="@string/au_versionen_oldexp"
+                android:animateLayoutChanges="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:id="@+id/au_tv_expversion"
+                android:layout_marginBottom="10dp"
+                android:animateLayoutChanges="true"
+                android:text="@string/experimental" />
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/au_recycler_exp"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/information"
+                android:id="@+id/au_btn_show_exp_information"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:textColor="@color/expVersion"
+                android:animateLayoutChanges="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

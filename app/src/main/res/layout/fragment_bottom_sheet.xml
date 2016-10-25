@@ -17,23 +17,22 @@
             android:textSize="18sp"
             android:text="@string/settings"
             android:textStyle="bold"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:id="@+id/bsheet_settings" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="13sp"
+            android:id="@+id/bsheet_tv_installed"
+            android:layout_toEndOf="@+id/bsheet_settings"
             android:layout_alignParentEnd="true"
-            android:id="@+id/bsheet_tv_installed"/>
+            android:textAlignment="textEnd"
+            android:layout_marginStart="20dp"
+            android:maxLines="1"/>
 
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/cardViewBGUpdate"
-        android:layout_marginBottom="5dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="de.vkay.updateapps.AppUebersicht.AppUebersicht"
+    android:id="@+id/au_coord">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:fitsSystemWindows="true"
+        android:background="@color/windowBG"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/au_appbar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            android:id="@+id/au_collaps"
+            android:minHeight="?attr/actionBarSize">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:fitsSystemWindows="true"
+                android:contentDescription="@string/conDesc"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                android:id="@+id/au_header_image"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_app_uebersicht" />
+
+</android.support.design.widget.CoordinatorLayout>

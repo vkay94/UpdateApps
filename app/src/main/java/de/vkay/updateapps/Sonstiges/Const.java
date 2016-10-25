@@ -30,7 +30,7 @@ public class Const {
     // Php Scripts
     public static String GETAPPS = "getApps.php";
     public static String GETFEED = "getFeedback.php";
-    //public static String GETUSER = "getUser.php";
+
     public static String WRITEFEED = "writeFeedback.php";
     public static String REGISTERUSER = "registerUser.php";
     public static String LOGINUSER = "loginUser.php";
@@ -38,5 +38,8 @@ public class Const {
     public static String CHECKNEWNAME = "checkNewName.php";
 
     public static String GETEXPFILES = "http://vkay.coolpage.biz/app/files/getFiles.php?paketname=";
+    public static String GETIMAGEFILES = "http://vkay.coolpage.biz/app/files/getImageFiles.php?paketname=";
+    public static String IMAGE = "/images/";
+    public static String GETIMAGESETVERSION = "http://vkay.coolpage.biz/app/files/getFiles.php?imageSet";
 
 }

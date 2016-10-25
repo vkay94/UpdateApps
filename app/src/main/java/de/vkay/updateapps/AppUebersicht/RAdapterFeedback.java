@@ -1,4 +1,4 @@
-package de.vkay.updateapps.AppUebersicht.Feedback;
+package de.vkay.updateapps.AppUebersicht;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,7 +19,7 @@ import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
-import de.vkay.updateapps.Sonstiges.Sonst;
+import de.vkay.updateapps.Sonstiges.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -80,7 +80,7 @@ public class RAdapterFeedback extends RecyclerView.Adapter<RAdapterFeedback.View
         holder.tv_art.setText(array.get(position).art);
         holder.tv_autor.setText(array.get(position).autor);
         holder.tv_message.setText(array.get(position).message);
-        holder.tv_date.setText(Sonst.getTimeDifference(array.get(position).date));
+        holder.tv_date.setText(Utils.getTimeDifference(array.get(position).date));
 
         holder.tv_autor.setTextColor(ContextCompat.getColor(context, R.color.white));
 

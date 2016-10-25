@@ -16,7 +16,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        //String topicName = Sonst.splitGetSecond("/topics/", remoteMessage.getFrom());
+        //String topicName = Utils.splitGetSecond("/topics/", remoteMessage.getFrom());
 
         showNotification(
                 remoteMessage.getData().get("pMessage"),

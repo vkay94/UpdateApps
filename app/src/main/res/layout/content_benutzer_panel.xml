@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:text="@string/change"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:id="@+id/benutzer_panel_changetext"/>
 
                 <RelativeLayout

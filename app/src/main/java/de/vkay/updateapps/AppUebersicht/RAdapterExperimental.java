@@ -26,7 +26,7 @@ import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
-import de.vkay.updateapps.Sonstiges.Sonst;
+import de.vkay.updateapps.Sonstiges.Utils;
 
 
 public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimental.ViewHolder> {
@@ -60,7 +60,7 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
                 public void onClick(View view) {
                     int pos = getLayoutPosition();
 
-                    if (shared.getWifiDownloadStatus() && !Sonst.isWifiConnected(context)) {
+                    if (shared.getWifiDownloadStatus() && !Utils.isWifiConnected(context)) {
                         Snacks.toastInBackground(context, context.getString(R.string.no_wifi_connection), Snacks.LONG);
                     } else {
                         downloadApk(Const.BASE_DOWNLOAD_FILES + bund.getString(Const.PAKETNAME) +
@@ -105,7 +105,12 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
         request.setDestinationInExternalPublicDir("/UpdateApps/" + bund.getString(Const.NAME), name + ".apk");
         request.setTitle("Experimental: " + bund.getString(Const.NAME) + " - " + name);
 
-        //final long downloadId = downloadManager.enqueue(request);
+        File file = new File(Environment.getExternalStorageDirectory() +
+                "/UpdateApps/" + bund.getString(Const.NAME) + "/" + name +  ".apk");
+        if (file.exists()) {
+            file.delete();
+        }
+
         downloadManager.enqueue(request);
 
         if (shared.getAutoInstallStatus()) {
@@ -125,7 +130,6 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
                         install.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         install.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         install.setDataAndType(file,
-                                //downloadManager.getMimeTypeForDownloadedFile(downloadId));
                                 "application/vnd.android.package-archive");
 
                         context.startActivity(install);

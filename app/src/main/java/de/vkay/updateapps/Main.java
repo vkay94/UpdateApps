@@ -31,12 +31,12 @@ import java.util.ArrayList;
 import de.vkay.updateapps.AlleApps.AlleApps;
 import de.vkay.updateapps.AlleApps.AlleAppsDatatype;
 import de.vkay.updateapps.AlleApps.RAdapterAA_Main;
-import de.vkay.updateapps.AppUebersicht.AUMain;
+import de.vkay.updateapps.AppUebersicht.AppUebersicht;
 import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
-import de.vkay.updateapps.Sonstiges.Sonst;
+import de.vkay.updateapps.Sonstiges.Utils;
 import de.vkay.updateapps.User.BenutzerPanel;
 import de.vkay.updateapps.User.UserLogin;
 import de.vkay.updateapps.Willkommen.WelcomeScreen;
@@ -44,6 +44,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 
 public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -58,6 +59,7 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
     NavigationView navTop, navBottom;
     View viewMoreAppCard;
+    boolean isCardShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +80,10 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
         if (!alleAppsArray.isEmpty()) {
             viewMoreAppCard.setVisibility(View.VISIBLE);
+            isCardShown = true;
         }
 
-        rvAAA = new RAdapterAA_Main(alleAppsArray, getApplicationContext());
+        rvAAA = new RAdapterAA_Main(alleAppsArray, getApplicationContext(), this);
         recyclerView.setAdapter(rvAAA);
         recyclerView.setHasFixedSize(true);
 
@@ -91,6 +94,9 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 getAppsInit();
             }
         }
+
+        getAppsInit();
+        checkImageSetVersion();
     }
 
     public void initialize() {
@@ -206,12 +212,12 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
 
             case R.id.nav_web:
-                Sonst.openInChromeCustomTab(this, Const.WEBSITE);
+                Utils.openInChromeCustomTab(this, Const.WEBSITE);
                 break;
 
             case R.id.nav_update:
                 AlleAppsDatatype data = db.getSpecificApp(getString(R.string.app_package));
-                Intent intent = new Intent(this, AUMain.class);
+                Intent intent = new Intent(this, AppUebersicht.class);
 
                 intent.putExtra(Const.PAKETNAME, data.getPaketname());
                 intent.putExtra(Const.NAME, data.getName());
@@ -297,8 +303,9 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
                         public void run() {
                             ArrayList<AlleAppsDatatype> array = db.getDatabaseApps();
 
-                            if (!array.isEmpty()) {
+                            if (!array.isEmpty() && !isCardShown) {
                                 viewMoreAppCard.setVisibility(View.VISIBLE);
+                                isCardShown = true;
                             }
 
                             rvAAA.addAll(array);
@@ -360,8 +367,9 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
                             ArrayList<AlleAppsDatatype> array = db.getDatabaseApps();
 
-                            if (!array.isEmpty()) {
+                            if (!array.isEmpty() && !isCardShown) {
                                 viewMoreAppCard.setVisibility(View.VISIBLE);
+                                isCardShown = true;
                             }
 
                             rvAAA.addAll(array);
@@ -371,6 +379,28 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void checkImageSetVersion() {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(Const.GETIMAGESETVERSION)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String imageSetName = response.body().string();
+                System.out.println(shared.getImageSetVersion());
+                if (!shared.getImageSetVersion().equals(imageSetName)){
+                    new SharedPrefs(getApplicationContext()).setImageSetVersion(imageSetName);
                 }
             }
         });

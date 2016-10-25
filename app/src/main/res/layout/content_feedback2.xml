@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="de.vkay.updateapps.AppUebersicht.Feedback.FeedbackActivity"
+    tools:context="de.vkay.updateapps.AppUebersicht.FeedbackActivity"
     tools:showIn="@layout/activity_feedback2"
     android:orientation="vertical">
 

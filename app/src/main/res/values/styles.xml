@@ -15,6 +15,8 @@
 
         <!-- Hamburger Icon
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item> -->
+
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
@@ -88,6 +90,26 @@
         <item name="colorControlActivated">@color/userRegisterBgBtn</item>
         <item name="colorSwitchThumbNormal">@color/someGrey</item>
         <item name="android:colorForeground">@color/someGreyDarker</item>
+    </style>
+
+    <style name="AppFeedback" parent="AppTheme">
+        <item name="android:windowBackground">@color/windowBG</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="expTitleText" parent="AppTheme">
+        <item name="android:textColor">@android:color/transparent</item>
     </style>
 
 </resources>

@@ -14,12 +14,12 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
-import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackDatatype;
+import de.vkay.updateapps.AppUebersicht.FeedbackDatatype;
 import de.vkay.updateapps.Datenspeicher.DB_AlleApps;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
-import de.vkay.updateapps.Sonstiges.Sonst;
+import de.vkay.updateapps.Sonstiges.Utils;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -74,7 +74,7 @@ public class RAdapterUserFeedback extends RecyclerView.Adapter<RAdapterUserFeedb
         holder.tv_art.setText(array.get(position).art);
         holder.tv_app.setText(db.getAppName(array.get(position).paketname));
         holder.tv_message.setText(array.get(position).message);
-        holder.tv_date.setText(Sonst.getTimeDifference(array.get(position).date));
+        holder.tv_date.setText(Utils.getTimeDifference(array.get(position).date));
 
         if (!array.get(position).art.isEmpty()) {
             holder.tv_art.setVisibility(View.VISIBLE);

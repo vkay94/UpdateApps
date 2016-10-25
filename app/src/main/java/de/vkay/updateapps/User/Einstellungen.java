@@ -1,14 +1,20 @@
 package de.vkay.updateapps.User;
 
 
+import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -16,15 +22,32 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
+import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
+import de.vkay.updateapps.Sonstiges.Const;
+import de.vkay.updateapps.Sonstiges.Snacks;
+import de.vkay.updateapps.Sonstiges.Utils;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application ic_settings_24dp. On
@@ -195,11 +218,32 @@ public class Einstellungen extends AppCompatPreferenceActivity {
 
         CheckBoxPreference checkBoxGlobalNotification;
 
+        ProgressDialog progressDialog;
+        Handler handler;
+        OkHttpClient client;
+
+        SharedPrefs shared;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
             setHasOptionsMenu(true);
+
+            handler = new Handler();
+            shared = new SharedPrefs(getActivity());
+
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setTitle("Lade herunter ...");
+            progressDialog.setMax(100);
+            progressDialog.setCancelable(false);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Abbrechen", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    progressDialog.dismiss();
+                }
+            });
 
             checkBoxGlobalNotification = (CheckBoxPreference) findPreference("global_notification");
             checkBoxGlobalNotification.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -217,18 +261,142 @@ public class Einstellungen extends AppCompatPreferenceActivity {
                 }
             });
 
-            /*
-            findPreference("preference_logout").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            final Preference delete = findPreference("pref_cache_delete");
+            delete.setSummary("Belegter Speicher: " + (Utils.dirSize(getActivity().getCacheDir())/1024) + " KB");
+            delete.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    new SharedPrefs(getActivity()).setLoggedInStatus(false);
-                    getActivity().setResult(3);
-                    getActivity().onBackPressed();
-
+                    deleteCache(getActivity());
+                    delete.setSummary("Belegter Speicher: " + (Utils.dirSize(getActivity().getCacheDir())/1024) + " KB");
+                    Snacks.toastInBackground(getActivity(), "Cache geleert", Toast.LENGTH_SHORT);
                     return false;
                 }
             });
-            */
+
+
+        }
+
+        public static void deleteCache(Context context) {
+            try {
+                File dir = context.getCacheDir();
+                deleteDir(dir);
+            } catch (Exception e) {}
+        }
+
+        public static boolean deleteDir(File dir) {
+            if (dir != null && dir.isDirectory()) {
+                String[] children = dir.list();
+                for (int i = 0; i < children.length; i++) {
+                    boolean success = deleteDir(new File(dir, children[i]));
+                    if (!success) {
+                        return false;
+                    }
+                }
+                return dir.delete();
+            } else if(dir!= null && dir.isFile()) {
+                return dir.delete();
+            } else {
+                return false;
+            }
+        }
+
+        public void checkPermission() {
+            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
+                }
+            } else {
+                downloadSet();
+            }
+        }
+
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            if(requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                downloadSet();
+            } else
+                Snacks.toastInBackground(getActivity(), getString(R.string.permission_denied), Toast.LENGTH_SHORT);
+        }
+
+        public void downloadSet() {
+            client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(Const.GETIMAGESETVERSION)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    Snacks.toastInBackground(getActivity(), "Fehler bei Suche", Toast.LENGTH_SHORT);
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    final String imageSetName = response.body().string();
+                    System.out.println(shared.getImageSetVersion());
+                    if (shared.getImageSetVersion().equals(imageSetName)){
+                        Snacks.toastInBackground(getActivity(), "Du bist auf dem aktuellsten Stand", Toast.LENGTH_SHORT);
+                    } else {
+
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                OkHttpClient client = new OkHttpClient();
+                                Request request = new Request.Builder().url(Const.BASE_DOWNLOAD_FILES + imageSetName + ".zip").build();
+
+                                Response response;
+                                try {
+                                    response = client.newCall(request).execute();
+                                    float file_size = response.body().contentLength();
+
+                                    BufferedInputStream inputStream = new BufferedInputStream(response.body().byteStream());
+                                    OutputStream stream = new FileOutputStream(Environment.getExternalStorageDirectory()+"/UpdateApps/"+ imageSetName + ".zip");
+
+                                    byte[] data = new byte[8192];
+                                    float total = 0;
+                                    int read_bytes;
+
+                                    handler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            progressDialog.show();
+                                        }
+                                    });
+
+                                    while ( (read_bytes = inputStream.read(data)) != -1 ){
+
+                                        total = total + read_bytes;
+                                        stream.write( data, 0, read_bytes);
+                                        progressDialog.setProgress((int) ((total / file_size)*100));
+                                    }
+
+                                    progressDialog.dismiss();
+                                    stream.flush();
+                                    stream.close();
+                                    response.body().close();
+
+                                    try {
+                                        Utils.unzip(Environment.getExternalStoragePublicDirectory("/UpdateApps/" + imageSetName+ ".zip"),
+                                                getActivity().getFilesDir());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } finally {
+                                    File imageZip = Environment.getExternalStoragePublicDirectory("/UpdateApps/" + imageSetName+ ".zip");
+                                    imageZip.delete();
+                                    shared.setImageSetVersion(imageSetName);
+                                }
+                            }
+                        });
+                        thread.start();
+                    }
+                }
+            });
         }
     }
 }

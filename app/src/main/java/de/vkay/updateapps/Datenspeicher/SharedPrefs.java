@@ -91,4 +91,13 @@ public class SharedPrefs {
     public boolean getAutoInstallStatus() {
         return shared.getBoolean("autostart_install", true);
     }
+
+    public void setImageSetVersion(String version) {
+        editor.putString("imageSet", version);
+        editor.apply();
+    }
+
+    public String getImageSetVersion() {
+        return shared.getString("imageSet", "");
+    }
 }

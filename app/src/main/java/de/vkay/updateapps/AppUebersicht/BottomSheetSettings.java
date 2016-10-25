@@ -45,8 +45,6 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
         }
     };
 
-    SwitchCompat switchNotification;
-
     static BottomSheetSettings newInstance(Bundle bund) {
         BottomSheetSettings f = new BottomSheetSettings();
         f.setArguments(bund);
@@ -82,7 +80,7 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
             });
         }
 
-        switchNotification = (SwitchCompat) view.findViewById(R.id.bsheet_switch_notiification);
+        SwitchCompat switchNotification = (SwitchCompat) view.findViewById(R.id.bsheet_switch_notiification);
         switchNotification.setChecked(shared.getAppStatus(bund.getString(Const.PAKETNAME)));
         switchNotification.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         switchNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -91,7 +89,7 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
                 if (isChecked) {
                     shared.saveApp(bund.getString(Const.PAKETNAME));
                     FirebaseMessaging.getInstance().subscribeToTopic(bund.getString(Const.PAKETNAME));
-                } else if (!isChecked) {
+                } else {
                     shared.removeApp(bund.getString(Const.PAKETNAME));
                     FirebaseMessaging.getInstance().unsubscribeFromTopic(bund.getString(Const.PAKETNAME));
                 }
@@ -100,25 +98,6 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
 
         return view;
     }
-
-    /*
-    @Override
-    public void setupDialog(Dialog dialog, int style) {
-        super.setupDialog(dialog, style);
-        View contentView = View.inflate(getContext(), R.layout.fragment_bottom_sheet, null);
-        dialog.setContentView(contentView);
-
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ((View) contentView.getParent()).getLayoutParams();
-        behavior = params.getBehavior();
-
-        if( behavior != null && behavior instanceof BottomSheetBehavior ) {
-            ((BottomSheetBehavior) behavior).setBottomSheetCallback(mBottomSheetBehaviorCallback);
-        }
-
-        switchNotification = (SwitchCompat) contentView.findViewById(R.id.bsheet_switch_notiification);
-        switchNotification.setEnabled(true);
-    }
-    */
 
     @Override
     public void onStart() {
@@ -129,4 +108,5 @@ public class BottomSheetSettings extends BottomSheetDialogFragment {
         params.height = WindowManager.LayoutParams.WRAP_CONTENT;
         getDialog().getWindow().setAttributes(params);
     }
+
 }

@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:gravity="end"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:id="@+id/rec_user_feedback_date" />
 
         </RelativeLayout>

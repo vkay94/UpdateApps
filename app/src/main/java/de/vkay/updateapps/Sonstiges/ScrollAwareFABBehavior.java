@@ -7,7 +7,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-import de.vkay.updateapps.AppUebersicht.AUMain;
+import de.vkay.updateapps.AppUebersicht.AUFeedback;
 
 /**
  * Ist dafür zuständig, dass der FAB beim Runterscrollen verschwindet und wieder auftaucht
@@ -35,7 +35,7 @@ public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
 
         if (dyConsumed > 5 && child.getVisibility() == View.VISIBLE) {
             child.hide();
-        } else if (dyConsumed < -10 && child.getVisibility() != View.VISIBLE && AUMain.fabVisible) {
+        } else if (dyConsumed < -10 && child.getVisibility() != View.VISIBLE && AUFeedback.fabVisible) {
             child.show();
         }
     }

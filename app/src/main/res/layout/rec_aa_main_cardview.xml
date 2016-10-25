@@ -21,7 +21,9 @@
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-            android:contentDescription="@string/conDesc" />
+            android:contentDescription="@string/conDesc"
+            android:id="@+id/rec_aa_main_image"
+            android:transitionName="image"/>
 
         <TextView
             android:layout_width="100dp"

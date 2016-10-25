@@ -17,7 +17,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import de.vkay.updateapps.AppUebersicht.Feedback.FeedbackDatatype;
+import de.vkay.updateapps.AppUebersicht.FeedbackDatatype;
 import de.vkay.updateapps.Datenspeicher.SharedPrefs;
 import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;

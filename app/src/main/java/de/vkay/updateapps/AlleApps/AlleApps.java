@@ -14,13 +14,6 @@ import de.vkay.updateapps.R;
 
 public class AlleApps extends AppCompatActivity {
 
-    public ArrayList<AlleAppsDatatype> allAppsArray;
-    public RAdapterAlleApps rvAAA;
-    RecyclerView recyclerView;
-    GridLayoutManager gridLayoutManager;
-
-    DB_AlleApps db_alleApps;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,17 +29,15 @@ public class AlleApps extends AppCompatActivity {
             }
         });
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_alleapps);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_alleapps);
 
-        gridLayoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        allAppsArray = new ArrayList<>();
+        DB_AlleApps db_alleApps = new DB_AlleApps(this);
+        ArrayList<AlleAppsDatatype> allAppsArray = db_alleApps.getDatabaseApps();
 
-        db_alleApps = new DB_AlleApps(this);
-        allAppsArray = db_alleApps.getDatabaseApps();
-
-        rvAAA = new RAdapterAlleApps(allAppsArray, getApplicationContext());
+        RAdapterAlleApps rvAAA = new RAdapterAlleApps(allAppsArray, getApplicationContext(), this);
         recyclerView.setAdapter(rvAAA);
         recyclerView.setHasFixedSize(true);
     }

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/CardViewDark">
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/cardViewBGDarKx">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,11 +19,14 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:id="@+id/card_exp_title"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/card_exp_btn_download"/>
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginStart="10dp"
             android:layout_alignParentEnd="true"
             app:srcCompat="@drawable/ic_download"
             android:id="@+id/card_exp_btn_download"

@@ -13,6 +13,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="de.vkay.updateapps.Sonstiges.GlideConfiguration"
+            android:value="GlideModule" />
+
         <activity
             android:name=".Main"
             android:label="@string/app_name"
@@ -34,17 +39,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".AppUebersicht.AUMain"
-            android:label="Test"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".AppUebersicht.Feedback.FeedbackActivity"
-            android:label="@string/title_activity_feedback"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity
             android:name=".User.UserLogin"
             android:label="@string/login"
             android:screenOrientation="portrait"
@@ -60,12 +54,31 @@
             android:theme="@style/ThemeSettings" />
         <activity
             android:name=".User.BenutzerPanel"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".User.UserFeedback"
             android:label="@string/title_activity_user_feedback"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AppUebersicht.AppUebersicht"
+            android:label="@string/title_activity_app_uebersicht"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AppUebersicht.AUFeedback"
+            android:label="@string/title_activity_aufeedback"
+            android:theme="@style/AppFeedback" />
+        <activity
+            android:name=".AppUebersicht.AUImageSlider"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_auimage_slider"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".AppUebersicht.FeedbackActivity"
+            android:label="@string/title_activity_feedback"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
 
         <service android:name=".Benachrichtigungen.FirebaseMessagingService">
             <intent-filter>
@@ -81,12 +94,12 @@
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
-            android:exported="false"
             android:enabled="true"
+            android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 

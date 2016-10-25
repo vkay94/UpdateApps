@@ -1,4 +1,4 @@
-package de.vkay.updateapps.AppUebersicht.Feedback;
+package de.vkay.updateapps.AppUebersicht;
 
 public class FeedbackDatatype {
 

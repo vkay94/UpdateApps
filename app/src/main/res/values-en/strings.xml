@@ -12,16 +12,13 @@
     <string name="title_activity_alle_apps">All Apps</string>
     <string name="title_activity_feedback">Write feedback</string>
     <string name="title_activity_user_feedback">Own contributions</string>
-    <string name="info">Info</string>
     <string name="au_versionen_oldexp">Older and exp. versions</string>
     <string name="change">edit</string>
     <string name="changelog">Changelog</string>
-    <string name="description">Description</string>
     <string name="download">Download</string>
     <string name="feedback_betreff">Subject</string>
     <string name="feedback_install_anh">Add installed version</string>
     <string name="finish">Finish</string>
-    <string name="load">Load</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="main_einige_apps">Some apps</string>
@@ -42,10 +39,6 @@
     <string name="welcome_start_login_assistent">Start Login Assitent</string>
     <string name="welcome_ueberspringen">Skip</string>
     <string name="login_username">"Username: "</string>
-    <string name="app_abonniert">Subscribed to app</string>
-    <string name="app_deabonniert">Unsubscribed from app</string>
-    <string name="aumain_uebersicht">Overview</string>
-    <string name="aumain_version">Versions</string>
     <string name="delete_error">Error while deletion</string>
     <string name="delete_success">Deletion successful</string>
     <string name="dialog_back">Back</string>
@@ -61,7 +54,6 @@
     <string name="installed_experimental"><![CDATA[<b>Installed Exp.-Version: </b>]]></string>
     <string name="login_success">Login successful</string>
     <string name="network">Network</string>
-    <string name="no_experim_builds_available">No exp. build available.</string>
     <string name="no_wifi_connection">No WiFi connection</string>
     <string name="often">Too often</string>
     <string name="permission_denied">Denied</string>
@@ -85,4 +77,5 @@
     <string name="installed">"Installed: "</string>
     <string name="get_notification">Receive notifications</string>
     <string name="username">"Username: "</string>
+    <string name="complete_changelog">Complete Changelog</string>
 </resources>

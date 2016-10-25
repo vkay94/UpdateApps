@@ -23,4 +23,12 @@
     <color name="autorColorRecycler">#64dd17</color>
     <color name="expVersion">#9cd25a</color>
 
+    <color name="testtextchangelog">#bce0ff</color>
+    <color name="testchangelogbtn">#5aa6d2</color>
+
+    <color name="test">#28333b</color>
+    <color name="feedbackBG">#28333b</color>
+
+    <color name="black_overlay">#66000000</color>
+
 </resources>
