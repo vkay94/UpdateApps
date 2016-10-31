@@ -36,6 +36,7 @@ public class Const {
     public static String LOGINUSER = "loginUser.php";
     public static String GETEXPLOG = "getExperimental.php?paketname=";
     public static String CHECKNEWNAME = "checkNewName.php";
+    public static String GETUMFRAGEN = "getUmfragen.php";
 
     public static String GETEXPFILES = "http://vkay.coolpage.biz/app/files/getFiles.php?paketname=";
     public static String GETIMAGEFILES = "http://vkay.coolpage.biz/app/files/getImageFiles.php?paketname=";
