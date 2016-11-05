@@ -398,7 +398,6 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String imageSetName = response.body().string();
-                System.out.println(shared.getImageSetVersion());
                 if (!shared.getImageSetVersion().equals(imageSetName)){
                     new SharedPrefs(getApplicationContext()).setImageSetVersion(imageSetName);
                 }

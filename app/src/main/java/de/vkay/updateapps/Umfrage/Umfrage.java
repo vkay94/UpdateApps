@@ -5,9 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-/**
- * Datentyp Umfrage
- */
 public class Umfrage {
 
     public static Type arrayType = new TypeToken<ArrayList<Umfrage>>(){}.getType();
@@ -22,16 +19,8 @@ public class Umfrage {
 
     ArrayList<Optionen> optionen;
 
-    public Umfrage() {
-        // Konstruktor
-    }
+    public Umfrage() {}
 
-    /**
-     * Konstruktor, um eine Umfrage hinzu zu fügen. Für evtl. Option der des Vorschlags
-     * @param id
-     * @param title
-     * @param description
-     */
     public Umfrage (int id, String title, String description) {
         optionen = new ArrayList<>();
 
@@ -40,10 +29,6 @@ public class Umfrage {
         this.description = description;
     }
 
-    /**
-     * Fügt eine Option der Umfrage hinzu
-     * @param option
-     */
     public void addOption (Optionen option) {
         optionen.add(option);
     }
@@ -90,9 +75,6 @@ public class Umfrage {
         this.type = type;
     }
 
-    /**
-     * Klasse der Option
-     */
     public static class Optionen{
         String name;
         int amount;

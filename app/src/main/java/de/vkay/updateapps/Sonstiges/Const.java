@@ -27,6 +27,8 @@ public class Const {
     public static String BASE_DOWNLOAD_FILES = "http://vkay.coolpage.biz/app/files/";
     public static String BASE_PHP = "http://vkay.coolpage.biz/app/updateapps/php/";
 
+    public static String GITHUB = "https://github.com/vkay94";
+
     // Php Scripts
     public static String GETAPPS = "getApps.php";
     public static String GETFEED = "getFeedback.php";

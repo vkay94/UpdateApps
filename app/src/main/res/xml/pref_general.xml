@@ -10,6 +10,10 @@
             android:key="autostart_install"
             />
 
+        <Preference
+            android:title="@string/source_github"
+            android:key="preference_source" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -41,21 +45,6 @@
         android:title="Lösche Cache"
         android:summary="Belegter Speicher: 0.8 MB"
         android:key="pref_cache_delete" />
-
-        CheckBoxPreference
-            android:title="Benutze Offline-Bilder"
-            android:summary="Werde bei App-Start benachrichtigt, ob eine neue Version verfügbar ist"
-            android:key="pref_image_info"
-            android:defaultValue="false"/>
-
-        Preference
-            android:title="Suche nach Aktualisierung"
-            android:key="pref_image_search" />
-
-        Preference
-            android:title="Lösche Resourcen"
-            android:summary="Belegter Speicher: 0.8 MB"
-            android:key="pref_image_delete" />
 
     </PreferenceCategory>
 

@@ -19,33 +19,20 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * Klasse, um Umfragen zu ermöglichen
- */
 public class UmfrageUtils {
 
     public List<Umfrage> list;
     Gson gson;
 
-    /**
-     * Konstruktor
-     */
     public UmfrageUtils() {
         list = new ArrayList<>();
         gson = new Gson();
     }
 
-    /**
-     * Fügt eine Umfrage der Liste hinzu
-     * @param umfrage Umfrage, die hinzugefügt werden soll
-     */
     public void addUmfrage(Umfrage umfrage) {
         list.add(umfrage);
     }
 
-    /**
-     * Lädt die Umfragen vom Server und speichert diese in einer Liste
-     */
     public void laden() {
         OkHttpClient client = new OkHttpClient();
 
@@ -68,9 +55,8 @@ public class UmfrageUtils {
 
                     for (int i = 0; i < Jarray.length(); i++){
                         JSONObject obj = Jarray.getJSONObject(i);
-                        Umfrage listUm = gson.fromJson(obj.getString("umfrage"), Umfrage.class);
 
-                        addUmfrage(listUm);
+                        addUmfrage(gson.fromJson(obj.getString("umfrage"), Umfrage.class));
                     }
 
                 } catch (JSONException e) {
@@ -80,10 +66,6 @@ public class UmfrageUtils {
         });
     }
 
-    /**
-     * Aktualliert eine Umfrage an der Stelle id
-     * @param id id der Umfrage
-     */
     public void aktualisieren(int id) {
         Umfrage umfrage = getUmfrage(id);
         String jsonUmfrage = gson.toJson(umfrage);
@@ -109,11 +91,6 @@ public class UmfrageUtils {
         });
     }
 
-    /**
-     * Sucht eine passende Umfrage anhand der id
-     * @param id id der zu suchenden Umfrage
-     * @return Passende Umfrage
-     */
     public Umfrage getUmfrage(int id) {
         Umfrage tmp = new Umfrage();
 

@@ -105,4 +105,6 @@
     <string name="complete_changelog">Kompletter Changelog</string>
     <string name="information" translatable="false">Information</string>
     <string name="title_activity_auimage_slider" translatable="false">ImageSlider</string>
+    <string name="source_github">Quellcode auf GitHub</string>
+    <string name="permission">Berechtigung</string>
 </resources>

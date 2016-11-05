@@ -1,15 +1,21 @@
 package de.vkay.updateapps.AppUebersicht;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +33,7 @@ import de.vkay.updateapps.R;
 import de.vkay.updateapps.Sonstiges.Const;
 import de.vkay.updateapps.Sonstiges.Snacks;
 import de.vkay.updateapps.Sonstiges.Utils;
+import de.vkay.updateapps.User.Einstellungen;
 
 
 public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimental.ViewHolder> {
@@ -35,12 +42,14 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
     Context context;
     Bundle bund;
     SharedPrefs shared;
+    View rootView;
 
     // Konstruktor
-    public RAdapterExperimental(List<String> array, Context context, Bundle bund) {
+    public RAdapterExperimental(List<String> array, Context context, Bundle bund, View rootView) {
         this.context = context;
         this.array = array;
         this.bund = bund;
+        this.rootView = rootView;
         shared = new SharedPrefs(context);
     }
 
@@ -58,14 +67,7 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
             imageDownload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int pos = getLayoutPosition();
-
-                    if (shared.getWifiDownloadStatus() && !Utils.isWifiConnected(context)) {
-                        Snacks.toastInBackground(context, context.getString(R.string.no_wifi_connection), Snacks.LONG);
-                    } else {
-                        downloadApk(Const.BASE_DOWNLOAD_FILES + bund.getString(Const.PAKETNAME) +
-                                "/exp/" + array.get(pos) + ".apk", array.get(pos));
-                    }
+                    permission_check_download(getLayoutPosition());
                 }
             });
         }
@@ -155,5 +157,42 @@ public class RAdapterExperimental extends RecyclerView.Adapter<RAdapterExperimen
         }
 
         Snacks.toastInBackground(context, context.getString(R.string.download_started), Toast.LENGTH_SHORT);
+    }
+
+    private void permission_check_download(int pos) {
+        if(ActivityCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.MyDialogTheme)
+                    .setTitle(R.string.permission)
+                    .setCancelable(true)
+                    .setMessage("Der Download benötigt Zugriff auf den Speicher, um die APK zu speichern und zu starten. Klicke auf Einstellungen, um " +
+                            "die Berechtigung zu aktivieren und probiere es erneut.")
+                    .setPositiveButton(R.string.settings, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                            intent.setData(Uri.parse("package:" + bund.getString(Const.PAKETNAME)));
+                            context.startActivity(intent);
+                        }
+                    });
+            alert.show();
+        } else {
+            if (shared.getWifiDownloadStatus() && !Utils.isWifiConnected(context)) {
+
+                Snacks.ShowSnack(context, rootView,
+                        context.getString(R.string.no_wifi_connection), Snackbar.LENGTH_INDEFINITE,
+                        R.color.greyStatus, R.color.blueish)
+                        .setAction("Einstellungen", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                context.startActivity(new Intent(context, Einstellungen.class));
+                            }
+                        })
+                        .show();
+
+            } else {
+                downloadApk(Const.BASE_DOWNLOAD_FILES + bund.getString(Const.PAKETNAME) +
+                        "/exp/" + array.get(pos) + ".apk", array.get(pos));
+            }
+        }
     }
 }

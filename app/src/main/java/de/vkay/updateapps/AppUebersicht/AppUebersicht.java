@@ -203,7 +203,7 @@ public class AppUebersicht extends AppCompatActivity implements View.OnClickList
 
         array = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.au_recycler_exp);
-        rvE = new RAdapterExperimental(array, this, bund);
+        rvE = new RAdapterExperimental(array, this, bund, recyclerView);
         llm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(rvE);
@@ -507,7 +507,6 @@ public class AppUebersicht extends AppCompatActivity implements View.OnClickList
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                System.out.println(getString(R.string.error));
             }
 
             @Override
@@ -518,8 +517,6 @@ public class AppUebersicht extends AppCompatActivity implements View.OnClickList
                     for (int i = 0; i <array.length(); i++){
 
                         final String file_name = array.getString(i);
-                        System.out.println(file_name);
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -559,7 +556,6 @@ public class AppUebersicht extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     expChangelog = new JSONArray(response.body().string()).getJSONObject(0).getString("exp");
-                    System.out.println("Experi");
 
                     if (!expChangelog.isEmpty() && expChangelog != null) {
                         runOnUiThread(new Runnable() {
