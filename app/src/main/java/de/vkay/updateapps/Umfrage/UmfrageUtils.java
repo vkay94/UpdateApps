@@ -87,6 +87,7 @@ public class UmfrageUtils {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                System.out.println("Umfrage aktualisieren: erfolgreich");
             }
         });
     }
