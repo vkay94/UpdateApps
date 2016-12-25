@@ -52,13 +52,17 @@ public class SharedPrefs {
         return false;
     }
 
+    public boolean appExistsInPreferences(String paketname) {
+        return shared.contains(paketname);
+    }
+
     public void saveApp(String paketname) {
         editor.putBoolean(paketname, true);
         editor.apply();
     }
 
     public void removeApp(String paketname) {
-        editor.remove(paketname);
+        editor.putBoolean(paketname, false);
         editor.apply();
     }
 

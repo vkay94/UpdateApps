@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -356,6 +358,11 @@ public class Main extends AppCompatActivity implements NavigationView.OnNavigati
 
                     db.removeApp(paketname);
                     db.insertApp(name, paketname, version, date, beschreibung, changelog);
+
+                    if (!shared.appExistsInPreferences(paketname)) {
+                        shared.saveApp(paketname);
+                        FirebaseMessaging.getInstance().subscribeToTopic(paketname);
+                    }
 
                     runOnUiThread(new Runnable() {
                         @Override
