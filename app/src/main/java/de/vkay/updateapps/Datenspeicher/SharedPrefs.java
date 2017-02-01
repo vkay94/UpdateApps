@@ -7,10 +7,10 @@ import android.preference.PreferenceManager;
 
 public class SharedPrefs {
 
-    Context context;
-    android.content.SharedPreferences shared;
-    android.content.SharedPreferences.Editor editor;
-    PackageInfo pInfo;
+    private Context context;
+    private android.content.SharedPreferences shared;
+    private android.content.SharedPreferences.Editor editor;
+    private PackageInfo pInfo;
 
     public SharedPrefs(Context context){
         this.context = context;

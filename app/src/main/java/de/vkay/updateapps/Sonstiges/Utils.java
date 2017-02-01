@@ -1,6 +1,5 @@
 package de.vkay.updateapps.Sonstiges;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -14,13 +13,14 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import de.vkay.updateapps.R;
 
 public class Utils {
 
     public static String getTimeDifference(String timeString) {
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY);
         Date date;
 
         long diffSeconds, diffMinutes, diffHours, diffDays;
@@ -65,7 +65,7 @@ public class Utils {
     }
 
     public static String getCurrentTimeStamp() {
-        return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss").format(new Date().getTime());
+        return new SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.GERMANY).format(new Date().getTime());
     }
 
     public static String splitGetFirst (String seperator, String string) {
@@ -102,7 +102,7 @@ public class Utils {
             builder.build().intent.setPackage("com.android.chrome");
         }
 
-        builder.build().launchUrl((Activity) context, link);
+        builder.build().launchUrl(context, link);
     }
 
     public static boolean chromeInstalled(Context context) {
@@ -120,13 +120,13 @@ public class Utils {
         if (dir.exists()) {
             long result = 0;
             File[] fileList = dir.listFiles();
-            for(int i = 0; i < fileList.length; i++) {
+            for (File aFileList : fileList) {
                 // Recursive call if it's a directory
-                if(fileList[i].isDirectory()) {
-                    result += dirSize(fileList [i]);
+                if (aFileList.isDirectory()) {
+                    result += dirSize(aFileList);
                 } else {
                     // Sum the file size in bytes
-                    result += fileList[i].length();
+                    result += aFileList.length();
                 }
             }
             return result;

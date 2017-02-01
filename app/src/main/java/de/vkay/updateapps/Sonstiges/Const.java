@@ -20,7 +20,6 @@ public class Const {
     // User
     public static String USER_NAME = "name";
     public static String USER_PASS = "passwort";
-    //public static String USER_APPS = "apps";
 
     // Webseite
     public static String WEBSITE = "http://vkay.coolpage.biz";
@@ -38,7 +37,6 @@ public class Const {
     public static String LOGINUSER = "loginUser.php";
     public static String GETEXPLOG = "getExperimental.php?paketname=";
     public static String CHECKNEWNAME = "checkNewName.php";
-    public static String GETUMFRAGEN = "getUmfragen.php";
 
     public static String GETEXPFILES = "http://vkay.coolpage.biz/app/files/getFiles.php?paketname=";
     public static String GETIMAGEFILES = "http://vkay.coolpage.biz/app/files/getImageFiles.php?paketname=";
