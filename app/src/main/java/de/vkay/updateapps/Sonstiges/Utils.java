@@ -35,27 +35,21 @@ public class Utils {
             diffHours = diff / (60 * 60 * 1000) % 24;
             diffDays = diff / (24 * 60 * 60 * 1000);
 
-            if (diffDays > 0){
-                if (diffDays > 31) {
-                    return "vor mehr als 1 Monat";
-                } else if (diffDays == 1){
-                    return "vor " + String.valueOf(diffDays) + " Tag";
-                } else {
-                    return "vor " + String.valueOf(diffDays) + " Tagen";
-                }
-            } else if (diffHours > 0) {
-                if (diffHours == 1) {
-                    return "vor " + String.valueOf(diffHours) + " Stunde"; }
-                else
-                return "vor " + String.valueOf(diffHours) + " Stunden";
-            } else if (diffMinutes > 0) {
-                if (diffMinutes == 1) {
-                    return "vor " + String.valueOf(diffMinutes) + " Minute";
-                }
-                return "vor " + String.valueOf(diffMinutes) + " Minuten";
-            } else {
-                return "vor " + String.valueOf(diffSeconds) + " Sekunden";
-            }
+            if (diffDays > 0)
+                if (diffDays > 31) return "vor mehr als 1 Monat";
+                    else if (diffDays == 1) return "vor " + String.valueOf(diffDays) + " Tag";
+                        else return "vor " + String.valueOf(diffDays) + " Tagen";
+
+            else if (diffHours > 0)
+                if (diffHours == 1) return "vor " + String.valueOf(diffHours) + " Stunde";
+                    else return "vor " + String.valueOf(diffHours) + " Stunden";
+
+            else if (diffMinutes > 0)
+                if (diffMinutes == 1) return "vor " + String.valueOf(diffMinutes) + " Minute";
+                    else return "vor " + String.valueOf(diffMinutes) + " Minuten";
+
+            else return "vor " + String.valueOf(diffSeconds) + " Sekunden";
+
 
         } catch (ParseException e) {
             e.printStackTrace();
