@@ -13,6 +13,8 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
+        <item name="android:navigationBarColor">@color/windowBG</item>
+
         <!-- Hamburger Icon
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item> -->
 
